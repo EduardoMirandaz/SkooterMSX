@@ -59,34 +59,78 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         this.setSize(Consts.RES * Consts.CELL_SIDE + getInsets().left + getInsets().right,
                 Consts.RES * Consts.CELL_SIDE + getInsets().top + getInsets().bottom);
 
-        e = new ArrayList<Personagem>(100);
+        e = new ArrayList<Personagem>(121);
 
         /*Cria e adiciona personagens*/
-        lSkooter = new Skooter("skooter/skooterFrente.png");
+        lSkooter = new Skooter("skooter/skooterFrente.png", "skooter/skooterTras.png", "skooter/skooterDireita.png", "skooter/skooterEsquerda.png");
         lSkooter.setPosicao(0, 7);
         this.addPersonagem(lSkooter);
 
-        BichinhoVaiVemHorizontal bBichinhoH = new BichinhoVaiVemHorizontal("inimigos/inimigoRosaFrente.png");
-        bBichinhoH.setPosicao(3, 3);
-        this.addPersonagem(bBichinhoH);
+        Inimigo inimigoAmarelo = new Inimigo("inimigos/inimigoAmareloFrente.png","inimigos/inimigoAmareloTras.png","inimigos/inimigoAmareloDireita.png","inimigos/inimigoAmareloEsquerda.png");
+        inimigoAmarelo.setPosicao(2, 0);
+        this.addPersonagem(inimigoAmarelo);
 
-        BichinhoVaiVemHorizontal bBichinhoH2 = new BichinhoVaiVemHorizontal("inimigos/inimigoRosaFrente.png");
-        bBichinhoH2.setPosicao(6, 6);
-        this.addPersonagem(bBichinhoH2);
+        Inimigo inimigoRosa = new Inimigo("inimigos/inimigoRosaFrente.png","inimigos/inimigoRosaTras.png","inimigos/inimigoRosaDireita.png","inimigos/inimigoRosaEsquerda.png");
+        inimigoRosa.setPosicao(0, 9);
+        this.addPersonagem(inimigoRosa);
 
-        BichinhoVaiVemHorizontal bBichinhoH3 = new BichinhoVaiVemHorizontal("inimigos/inimigoRosaFrente.png");
-        bBichinhoH3.setPosicao(2, 9);
-        this.addPersonagem(bBichinhoH3);
+        Inimigo inimigoAzul = new Inimigo("inimigos/inimigoAzulFrente.png","inimigos/inimigoAzulTras.png","inimigos/inimigoAzulDireita.png","inimigos/inimigoAzulEsquerda.png");
+        inimigoAzul.setPosicao(10, 1);
+        this.addPersonagem(inimigoAzul);
 
-        Caveira bV = new Caveira("inimigos/inimigoVerdeDireita.png");
-        bV.setPosicao(9, 1);
-        this.addPersonagem(bV);
-        
-        ZigueZague zz = new ZigueZague("temer");
-        zz.setPosicao(5, 5);
-        this.addPersonagem(zz);
+        Inimigo inimigoVerde = new Inimigo("inimigos/inimigoVerdeFrente.png","inimigos/inimigoVerdeTras.png","inimigos/inimigoVerdeDireita.png","inimigos/inimigoVerdeEsquerda.png");
+        inimigoVerde.setPosicao(10, 9);
+        this.addPersonagem(inimigoVerde);
+
+        Coletavel uva = new Coletavel("coletaveis/uva.png");
+        uva.setPosicao(0, 0);
+        this.addPersonagem(uva);
+
+        Coletavel limao = new Coletavel("coletaveis/limao.png");
+        limao.setPosicao(0, 10);
+        this.addPersonagem(limao);
+
+        Coletavel morango = new Coletavel("coletaveis/morango.png");
+        morango.setPosicao(10, 0);
+        this.addPersonagem(morango);
+
+        Coletavel cereja = new Coletavel("coletaveis/cereja.png");
+        cereja.setPosicao(10, 10);
+        this.addPersonagem(cereja);
+
+        int posicoesBlocosFixos[][] =    {
+                                        {1,1},{1,3},{1,5},{1,7},{1,9},
+                                        {3,1},{3,3},{3,5},{3,7},{3,9},
+                                        {5,1},{5,3},{5,5},{5,7},{5,9},
+                                        {7,1},{7,3},{7,5},{7,7},{7,9},
+                                        {9,1},{9,3},{9,5},{9,7},{9,9}
+                                    };
+        for(int i = 0; i < posicoesBlocosFixos.length; i++){
+            Bloco bloco = new Bloco("blocos/blocoVermelhoFixo.png");
+            bloco.setPosicao(posicoesBlocosFixos[i][0], posicoesBlocosFixos[i][1]);
+            this.addPersonagem(bloco);
+        }
+
+        int posicoesBlocosQuebraveis[][] =    {
+                {0,1},{1,3},
+                {1,2},{1,8},{1,10},
+                {2,1},{2,5},
+                {3,0},{3,8},
+                {4,1},{4,9},
+                {5,2},{5,6},
+                {6,5},{6,7},
+                {7,8},{7,10},
+                {8,3},{8,9},
+                {9,0},{9,2},{9,6},{9,8},
+                {10,7}
+        };
+        for(int i = 0; i < posicoesBlocosQuebraveis.length; i++){
+            Bloco bloco = new Bloco("blocos/blocoVerdeQuebravel.png");
+            bloco.setPosicao(posicoesBlocosQuebraveis[i][0], posicoesBlocosQuebraveis[i][1]);
+            this.addPersonagem(bloco);
+        }
+
     }
-
 
     public void addPersonagem(Personagem umPersonagem) {
         e.add(umPersonagem);

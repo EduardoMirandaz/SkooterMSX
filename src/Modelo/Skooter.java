@@ -8,8 +8,12 @@ package Modelo;
 import java.io.Serializable;
 
 public class Skooter extends Personagem implements Serializable{
-    public Skooter(String sNomeImagePNG) {
-        super(sNomeImagePNG);
+    public Skooter(String imagemFrente, String imagemTras, String imagemDireita, String imagemEsquerda) {
+        super(imagemFrente, imagemTras, imagemDireita, imagemEsquerda);
+    }
+
+    public Skooter(String imagem) {
+        super(imagem);
     }
     public void voltaAUltimaPosicao(){
         this.pPosicao.volta();

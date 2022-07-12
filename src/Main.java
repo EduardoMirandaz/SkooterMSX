@@ -15,9 +15,7 @@ public class Main {
                 tTela.setVisible(true);
                 tTela.createBufferStrategy(2);
                 tTela.go();
-
-                
-   ss         }
+            }
         });
     }
 }
