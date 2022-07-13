@@ -36,6 +36,9 @@ import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+import static Modelo.BlocoFixo.posicoesBlocosFixos;
+import static Modelo.BlocoQuebravel.posicoesBlocosQuebraveis;
+
 /**
  *
  * @author junio
@@ -46,6 +49,9 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
     private ArrayList<Personagem> e;
     private ControleDeJogo cj = new ControleDeJogo();
     private Graphics g2;
+
+    public static ArrayList<Bloco> blocosFase1;
+
     /**
      * Creates new form tabuleiro
      */
@@ -98,20 +104,21 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         cereja.setPosicao(10, 10);
         this.addPersonagem(cereja);
 
-        int posicoesBlocosFixos[][] =    {
-                                        {1,1},{1,3},{1,5},{1,7},{1,9},
-                                        {3,1},{3,3},{3,5},{3,7},{3,9},
-                                        {5,1},{5,3},{5,5},{5,7},{5,9},
-                                        {7,1},{7,3},{7,5},{7,7},{7,9},
-                                        {9,1},{9,3},{9,5},{9,7},{9,9}
-                                    };
-        for(int i = 0; i < posicoesBlocosFixos.length; i++){
-            Bloco bloco = new Bloco("blocos/blocoVermelhoFixo.png");
-            bloco.setPosicao(posicoesBlocosFixos[i][0], posicoesBlocosFixos[i][1]);
-            this.addPersonagem(bloco);
+        posicoesBlocosFixos = new Integer[][]{
+                {1, 1}, {1, 3}, {1, 5}, {1, 7}, {1, 9},
+                {3, 1}, {3, 3}, {3, 5}, {3, 7}, {3, 9},
+                {5, 1}, {5, 3}, {5, 5}, {5, 7}, {5, 9},
+                {7, 1}, {7, 3}, {7, 5}, {7, 7}, {7, 9},
+                {9, 1}, {9, 3}, {9, 5}, {9, 7}, {9, 9}
+        };
+
+        for (Integer[] posicoesBlocosFixo : posicoesBlocosFixos) {
+            BlocoFixo blocoFixo = new BlocoFixo("blocos/blocoVermelhoFixo.png");
+            blocoFixo.setPosicao(posicoesBlocosFixo[0], posicoesBlocosFixo[1]);
+            this.addPersonagem(blocoFixo);
         }
 
-        int posicoesBlocosQuebraveis[][] =    {
+        posicoesBlocosQuebraveis = new Integer[][]{
                 {0,1},{1,3},
                 {1,2},{1,8},{1,10},
                 {2,1},{2,5},
@@ -124,10 +131,10 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
                 {9,0},{9,2},{9,6},{9,8},
                 {10,7}
         };
-        for(int i = 0; i < posicoesBlocosQuebraveis.length; i++){
-            Bloco bloco = new Bloco("blocos/blocoVerdeQuebravel.png");
-            bloco.setPosicao(posicoesBlocosQuebraveis[i][0], posicoesBlocosQuebraveis[i][1]);
-            this.addPersonagem(bloco);
+        for (Integer[] posicoesBlocosQuebraveis : posicoesBlocosQuebraveis) {
+            BlocoQuebravel blocoQuebravel = new BlocoQuebravel("blocos/blocoVerdeQuebravel.png");
+            blocoQuebravel.setPosicao(posicoesBlocosQuebraveis[0], posicoesBlocosQuebraveis[1]);
+            this.addPersonagem(blocoQuebravel);
         }
 
     }

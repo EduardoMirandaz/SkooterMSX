@@ -6,7 +6,7 @@ package Modelo;
         import java.awt.Graphics;
         import java.io.Serializable;
 
-public class Bloco extends Personagem implements Serializable {
+public abstract class Bloco extends Personagem implements Serializable {
 
     public Bloco(String sNomeImagePNG) {
         super(sNomeImagePNG);
