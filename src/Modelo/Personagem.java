@@ -7,7 +7,7 @@ package Modelo;
 import Auxiliar.Consts;
 import Auxiliar.Desenho;
 import Controler.Tela;
-import auxiliar.Posicao;
+import Auxiliar.Posicao;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -17,6 +17,8 @@ import java.io.Serializable;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+
 
 public abstract class Personagem implements Serializable {
 
@@ -71,7 +73,7 @@ public abstract class Personagem implements Serializable {
     }
 
     protected Personagem(String image) {
-        this.pPosicao = new Posicao(1, 1);
+        this.pPosicao = new Posicao(2, 1);
         this.bTransponivel = true;
         this.bMortal = false;
         try {
@@ -115,22 +117,26 @@ public abstract class Personagem implements Serializable {
     }
 
     public boolean moveUp() {
-        iImage = iTras;
-        return this.pPosicao.moveUp();
+        boolean moveu = this.pPosicao.moveUp();
+        if (moveu) iImage = iTras;
+        return moveu;
     }
 
     public boolean moveDown() {
-        iImage = iFrente;
-        return this.pPosicao.moveDown();
+        boolean moveu = this.pPosicao.moveDown();
+        if (moveu) iImage = iFrente;
+        return moveu;
     }
 
     public boolean moveRight() {
-        iImage = iDireita;
-        return this.pPosicao.moveRight();
+        boolean moveu = this.pPosicao.moveRight();
+        if (moveu) iImage = iDireita;
+        return moveu;
     }
 
     public boolean moveLeft() {
-        iImage = iEsquerda;
-        return this.pPosicao.moveLeft();
+        boolean moveu = this.pPosicao.moveLeft();
+        if (moveu) iImage = iEsquerda;
+        return moveu;
     }
 }

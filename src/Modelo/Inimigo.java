@@ -29,25 +29,16 @@ public class Inimigo extends Personagem  implements Serializable {
             Random r = new Random();
             int valorAleatorio = r.nextInt(4);
             if(valorAleatorio == 0){
-                if(!this.moveUp()){
-                   this.voltaAUltimaPosicao();
-                }
-
+                this.moveUp();
             }
             else if(valorAleatorio == 1){
-                if(!this.moveRight()){
-                    this.voltaAUltimaPosicao();
-                }
+                this.moveRight();
             }
             else if(valorAleatorio == 2){
-                if(!this.moveDown()){
-                    this.voltaAUltimaPosicao();
-                }
+                this.moveDown();
             }
             else if(valorAleatorio == 3){
-                if(!this.moveLeft()){
-                    this.voltaAUltimaPosicao();
-                }
+                this.moveLeft();
             }
             this.acumuladorDeTempo = 0;
         }
@@ -55,8 +46,5 @@ public class Inimigo extends Personagem  implements Serializable {
         super.autoDesenho();
     }
 
-    public void voltaAUltimaPosicao(){
-        this.pPosicao.volta();
-    }
 }
 

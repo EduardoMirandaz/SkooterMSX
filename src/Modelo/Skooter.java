@@ -15,7 +15,5 @@ public class Skooter extends Personagem implements Serializable{
     public Skooter(String imagem) {
         super(imagem);
     }
-    public void voltaAUltimaPosicao(){
-        this.pPosicao.volta();
-    }
+
 }

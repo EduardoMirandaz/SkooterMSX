@@ -1,37 +1,42 @@
-package auxiliar;
+package Auxiliar;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
-public class Posicao  implements Serializable{
+import static Controler.MatrizObjetos.matrizDeObjetos;
+
+public class Posicao implements Serializable{
     private int	linha;
     private int coluna;
-    
-    private int linhaAnterior;
-    private int colunaAnterior;
 
     public Posicao(int linha, int coluna){
         this.setPosicao(linha,coluna);
     }
 
-    public boolean setPosicao(int linha, int coluna){       
-        if(linha < 0 || linha >= Auxiliar.Consts.RES)
+    public boolean setPosicao(int linha, int coluna){
+        System.out.println("Estou querendo ir para: " + linha +" "+ coluna);
+        if(linha < 0 || linha >= Auxiliar.Consts.RES ||
+          (coluna < 0 || coluna >= Auxiliar.Consts.RES)){
+            System.out.println("nao movi, borda");
             return false;
-        linhaAnterior = this.linha;
+
+        }
+
+        if(matrizDeObjetos[linha][coluna] != null){
+            System.out.println("nao movi, parede!");
+            return false;
+        }
+
+        System.out.println("movi");
+
         this.linha = linha;
-        
-        if(coluna < 0 || coluna >= Auxiliar.Consts.RES)
-            return false;
-        colunaAnterior = this.coluna;
         this.coluna = coluna;
+
         return true;
     }
     
     public int getLinha(){
         return linha;
-    }
-   
-    public boolean volta(){
-        return this.setPosicao(linhaAnterior,colunaAnterior);
     }
 
     public int getColuna(){

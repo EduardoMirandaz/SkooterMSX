@@ -8,7 +8,7 @@ package Controler;
 
 import Modelo.Personagem;
 import Modelo.Skooter;
-import auxiliar.Posicao;
+import Auxiliar.Posicao;
 import java.util.ArrayList;
 
 /**

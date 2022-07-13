@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -36,6 +37,7 @@ import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+import static Controler.MatrizObjetos.matrizDeObjetos;
 import static Modelo.BlocoFixo.posicoesBlocosFixos;
 import static Modelo.BlocoQuebravel.posicoesBlocosQuebraveis;
 
@@ -50,14 +52,20 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
     private ControleDeJogo cj = new ControleDeJogo();
     private Graphics g2;
 
+
     public static ArrayList<Bloco> blocosFase1;
+
 
     /**
      * Creates new form tabuleiro
      */
     public Tela() {
+
+        MatrizObjetos matrizObjetos = new MatrizObjetos();
+
         Desenho.setCenario(this);
         initComponents();
+
         this.addMouseListener(this); /*mouse*/
 
         this.addKeyListener(this);   /*teclado*/
@@ -73,7 +81,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         this.addPersonagem(lSkooter);
 
         Inimigo inimigoAmarelo = new Inimigo("inimigos/inimigoAmareloFrente.png","inimigos/inimigoAmareloTras.png","inimigos/inimigoAmareloDireita.png","inimigos/inimigoAmareloEsquerda.png");
-        inimigoAmarelo.setPosicao(2, 0);
+        inimigoAmarelo.setPosicao(1, 0);
         this.addPersonagem(inimigoAmarelo);
 
         Inimigo inimigoRosa = new Inimigo("inimigos/inimigoRosaFrente.png","inimigos/inimigoRosaTras.png","inimigos/inimigoRosaDireita.png","inimigos/inimigoRosaEsquerda.png");
@@ -115,6 +123,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         for (Integer[] posicoesBlocosFixo : posicoesBlocosFixos) {
             BlocoFixo blocoFixo = new BlocoFixo("blocos/blocoVermelhoFixo.png");
             blocoFixo.setPosicao(posicoesBlocosFixo[0], posicoesBlocosFixo[1]);
+            matrizObjetos.setMatrizDeObjetos(posicoesBlocosFixo[0], posicoesBlocosFixo[1], blocoFixo);
             this.addPersonagem(blocoFixo);
         }
 
@@ -134,7 +143,12 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         for (Integer[] posicoesBlocosQuebraveis : posicoesBlocosQuebraveis) {
             BlocoQuebravel blocoQuebravel = new BlocoQuebravel("blocos/blocoVerdeQuebravel.png");
             blocoQuebravel.setPosicao(posicoesBlocosQuebraveis[0], posicoesBlocosQuebraveis[1]);
+            matrizObjetos.setMatrizDeObjetos(posicoesBlocosQuebraveis[0], posicoesBlocosQuebraveis[1], blocoQuebravel);
             this.addPersonagem(blocoQuebravel);
+        }
+        System.out.println();
+        for(int i = 0; i < 11; i++){
+            System.out.println(Arrays.toString(matrizDeObjetos[i]));
         }
 
     }
@@ -225,9 +239,6 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
             lSkooter.moveLeft();
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             lSkooter.moveRight();
-        }
-        if (!cj.ehPosicaoValida(this.e, lSkooter.getPosicao())) {
-            lSkooter.voltaAUltimaPosicao();
         }
 
         this.setTitle("-> Cell: " + (lSkooter.getPosicao().getColuna()) + ", "
