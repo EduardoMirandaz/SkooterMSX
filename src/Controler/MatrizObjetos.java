@@ -14,9 +14,9 @@ public class MatrizObjetos {
 
 
     public MatrizObjetos() {
-        matrizDeObjetos = new Personagem[11][11];
-        for(int i = 0; i < 11; i++) Arrays.fill(matrizDeObjetos[i], null);
-        for(int i = 0; i < 11; i++){
+        matrizDeObjetos = new Personagem[Consts.RESOLUCAO][Consts.RESOLUCAO+Consts.LARGURA_MENU];
+        for(int i = 0; i < Consts.RESOLUCAO; i++) Arrays.fill(matrizDeObjetos[i], null);
+        for(int i = 0; i < Consts.RESOLUCAO; i++){
             System.out.println(Arrays.toString(matrizDeObjetos[i]));
         }
 
@@ -78,7 +78,7 @@ public class MatrizObjetos {
         ArrayList<Personagem> personagens = new ArrayList<>();
         boolean achouSkooter = false;
         for(int i = 0; i < matrizDeObjetos.length && !achouSkooter; i++){
-            for (int j = 0; j < matrizDeObjetos.length; j++){
+            for (int j = 0; j < matrizDeObjetos[i].length; j++){
                 if(matrizDeObjetos[i][j] instanceof Skooter){
                     personagens.add(matrizDeObjetos[i][j]);
                     achouSkooter = true;

@@ -7,17 +7,13 @@ package Modelo;
 import Auxiliar.Consts;
 import Auxiliar.Desenho;
 import Controler.MatrizObjetos;
-import Controler.Tela;
 import Auxiliar.Posicao;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 
 
@@ -71,6 +67,20 @@ public abstract class Personagem implements Serializable {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    public void setiImage(String caminho) {
+        try {
+            ImageIcon imagemAux = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.PATH + caminho);
+            Image imgF = imagemAux.getImage();
+            BufferedImage biF = new BufferedImage(Consts.CELL_SIDE, Consts.CELL_SIDE, BufferedImage.TYPE_INT_ARGB);
+            Graphics gF = biF.createGraphics();
+            gF.drawImage(imgF, 0, 0, Consts.CELL_SIDE, Consts.CELL_SIDE, null);
+            this.iImage = new ImageIcon(biF);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     protected Personagem(String image) {

@@ -9,14 +9,8 @@ import java.awt.Graphics;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
 
-import Controler.MatrizObjetos;
 import Controler.Tela;
-import Modelo.Personagem;
 
-/**
- *
- * @author junio
- */
 public class Desenho implements Serializable {
     static Tela jCenario;
     public static void setCenario(Tela umJCenario) {

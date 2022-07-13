@@ -67,11 +67,32 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
 
         this.addKeyListener(this);   /*teclado*/
         /*Cria a janela do tamanho do tabuleiro + insets (bordas) da janela*/
-        this.setSize((Consts.RESOLUCAO +Consts.LARGURA_MENU) * Consts.CELL_SIDE + getInsets().left + getInsets().right,
+        this.setSize((Consts.RESOLUCAO + Consts.LARGURA_MENU) * Consts.CELL_SIDE + getInsets().left + getInsets().right,
                 Consts.RESOLUCAO * Consts.CELL_SIDE + getInsets().top + getInsets().bottom);
 
 
         /*Cria e adiciona personagens*/
+
+        String imagensIniciais[][] = {
+                {"menu/menuScore1.png","menu/menuScore2.png","menu/menuScore3.png","menu/menuScore4.png"},
+                {"menu/menuNum0.png","menu/menuNum0.png","menu/menuNum0.png","menu/menuNum0.png"},
+                {"menu/menuVida1.png","menu/menuVida2.png","menu/menuVida3.png","menu/menuVida4.png"},
+                {"menu/menuEmpty.png","menu/menuEmpty.png","menu/menuNum0.png","menu/menuNum3.png"},
+                {"menu/menuFase1.png","menu/menuFase2.png","menu/menuFase3.png","menu/menuFase4.png"},
+                {"menu/menuEmpty.png","menu/menuEmpty.png","menu/menuNum0.png","menu/menuNum1.png"},
+                {"menu/menuEmpty.png","menu/menuEmpty.png","menu/menuEmpty.png","menu/menuEmpty.png"},
+                {"menu/menuEmpty.png", "menu/menu100.png", "menu/menuX1.png", "menu/menuMorango.png"},
+                {"menu/menuEmpty.png", "menu/menu150.png", "menu/menuEmpty.png", "menu/menuLimao.png"},
+                {"menu/menuEmpty.png", "menu/menu200.png", "menu/menuEmpty.png", "menu/menuCereja.png"},
+                {"menu/menuEmpty.png", "menu/menu250.png", "menu/menuEmpty.png", "menu/menuUva.png"}
+        };
+        for(int i = 0; i < Consts.RESOLUCAO; i++){
+            for(int j = 0; j < Consts.LARGURA_MENU; j++){
+                MatrizObjetos.setMatrizDeObjetos(i,11+j, new ParteMenu(imagensIniciais[i][j]));
+                ((ParteMenu)(MatrizObjetos.getMatrizDeObjetos()[i][11+j])).setPosicaoInMenu(i,11+j);
+            }
+        }
+
 
         MatrizObjetos.setMatrizDeObjetos(0,7, new Skooter("skooter/skooterFrente.png", "skooter/skooterTras.png", "skooter/skooterDireita.png", "skooter/skooterEsquerda.png"));
         MatrizObjetos.getMatrizDeObjetos()[0][7].setPosicao(0,7);
@@ -115,6 +136,8 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         MatrizObjetos.getMatrizDeObjetos()[10][10].setPosicao(10,10);
 
 
+
+
         posicoesBlocosFixos = new Integer[][]{
                 {1, 1}, {1, 3}, {1, 5}, {1, 7}, {1, 9},
                 {3, 1}, {3, 3}, {3, 5}, {3, 7}, {3, 9},
@@ -148,7 +171,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
             MatrizObjetos.setMatrizDeObjetos(posicoesBlocosQuebraveis[0], posicoesBlocosQuebraveis[1], blocoQuebravel);
         }
 
-        estadoInicialFase = new Personagem[Consts.RESOLUCAO][Consts.RESOLUCAO];
+        estadoInicialFase = new Personagem[Consts.RESOLUCAO][Consts.RESOLUCAO + Consts.LARGURA_MENU];
         for (int i = 0; i < Consts.RESOLUCAO; i++){
             System.arraycopy(matrizDeObjetos[i], 0, estadoInicialFase[i], 0, Consts.RESOLUCAO);
         }
@@ -171,8 +194,8 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         /*Criamos um contexto gráfico*/
         graphics_1 = graphics_2.create(getInsets().left, getInsets().top, getWidth() - getInsets().right, getHeight() - getInsets().top);
         /*************Desenha cenário de fundo**************/
-        for (int i = 0; i < Consts.RESOLUCAO + Consts.LARGURA_MENU; i++) {
-            for (int j = 0; j < Consts.RESOLUCAO; j++) {
+        for (int i = 0; i < Consts.RESOLUCAO; i++) {
+            for (int j = 0; j < Consts.RESOLUCAO + Consts.LARGURA_MENU; j++) {
                 try {
                     Image newImage = Toolkit.getDefaultToolkit().getImage(new java.io.File(".").getCanonicalPath() + Consts.PATH + "fundo/fundo.png");
                     graphics_1.drawImage(newImage,
@@ -191,8 +214,6 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
 
 
         if (!MatrizObjetos.isEmpty(MatrizObjetos.getMatrizDeObjetos())) {
-            ArrayList<Personagem> personagens = new ArrayList<>();
-            personagens = MatrizObjetos.getListaDePersonagens();
 
 //            System.out.println(personagens);
 //            for(Personagem p: personagens){
@@ -200,8 +221,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
 //                System.out.println();
 //            }
 //            System.out.println(personagens);
-            this.controleDeJogo.desenhaTudo(personagens);
-            this.controleDeJogo.processaTudo(personagens);
+            this.controleDeJogo.desenhaTudo(matrizDeObjetos);
         }
 
 

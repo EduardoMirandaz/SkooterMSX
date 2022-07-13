@@ -7,11 +7,9 @@ package Modelo;
 
 import Auxiliar.Consts;
 import Controler.MatrizObjetos;
-import Controler.Tela;
 
 import java.io.Serializable;
 
-import static Auxiliar.Util.*;
 
 public class Skooter extends Personagem implements Serializable{
     public Skooter(String imagemFrente, String imagemTras, String imagemDireita, String imagemEsquerda) {
@@ -24,47 +22,47 @@ public class Skooter extends Personagem implements Serializable{
     @Override
     public boolean moveUp() {
         this.iImage = this.iTras;
-        this.getPosicao().setDirecao(CIMA);
+        this.getPosicao().setDirecao(Consts.CIMA);
         int indexLinha = this.getPosicao().getLinha()-1;
         if(indexLinha < 0) return false;
         return verificarProximoPasso(
                 MatrizObjetos.getMatrizDeObjetos()[indexLinha][this.getPosicao().getColuna()],
-                CIMA
+                Consts.CIMA
         );
     }
 
     @Override
     public boolean moveRight() {
         this.iImage = this.iDireita;
-        this.getPosicao().setDirecao(DIREITA);
+        this.getPosicao().setDirecao(Consts.DIREITA);
         int indexColuna = this.getPosicao().getColuna()+1;
         if(indexColuna >= Consts.RESOLUCAO) return false;
         return verificarProximoPasso(
                 MatrizObjetos.getMatrizDeObjetos()[this.getPosicao().getLinha()][indexColuna],
-                DIREITA
+                Consts.DIREITA
         );
     }
     @Override
     public boolean moveDown() {
         this.iImage = this.iFrente;
-        this.getPosicao().setDirecao(BAIXO);
+        this.getPosicao().setDirecao(Consts.BAIXO);
         int indexLinha = this.getPosicao().getLinha()+1;
         if(indexLinha >= Consts.RESOLUCAO) return false;
         return verificarProximoPasso(
                 MatrizObjetos.getMatrizDeObjetos()[indexLinha][this.getPosicao().getColuna()],
-                BAIXO
+                Consts.BAIXO
         );
     }
 
     @Override
     public boolean moveLeft() {
         this.iImage = this.iEsquerda;
-        this.getPosicao().setDirecao(ESQUERDA);
+        this.getPosicao().setDirecao(Consts.ESQUERDA);
         int indexColuna = this.getPosicao().getColuna()-1;
         if(indexColuna < 0) return false;
         return verificarProximoPasso(
                 MatrizObjetos.getMatrizDeObjetos()[this.getPosicao().getLinha()][indexColuna],
-                ESQUERDA
+                Consts.ESQUERDA
         );
     }
 
@@ -73,10 +71,10 @@ public class Skooter extends Personagem implements Serializable{
             return false;
 
         switch (direcao){
-            case CIMA -> {return super.moveUp();}
-            case DIREITA -> {return super.moveRight();}
-            case BAIXO -> {return super.moveDown();}
-            case ESQUERDA -> {return super.moveLeft();}
+            case Consts.CIMA -> {return super.moveUp();}
+            case Consts.DIREITA -> {return super.moveRight();}
+            case Consts.BAIXO -> {return super.moveDown();}
+            case Consts.ESQUERDA -> {return super.moveLeft();}
             default -> {return false;}
         }
     }

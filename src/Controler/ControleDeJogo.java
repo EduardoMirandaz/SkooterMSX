@@ -6,6 +6,7 @@
 
 package Controler;
 
+import Auxiliar.Consts;
 import Modelo.Personagem;
 import Modelo.Skooter;
 import Auxiliar.Posicao;
@@ -13,33 +14,13 @@ import java.util.ArrayList;
 
 
 public class ControleDeJogo {
-    public void desenhaTudo(ArrayList<Personagem> e){
-        for(int i = 0; i < e.size(); i++){
-            e.get(i).autoDesenho();
+    public void desenhaTudo(Personagem[][] matrizDePersonagens){
+        for(int i = 0; i < Consts.RESOLUCAO; i++){
+            for(int j = 0; j < Consts.RESOLUCAO + Consts.LARGURA_MENU; j++){
+                if(matrizDePersonagens[i][j] != null){
+                    matrizDePersonagens[i][j].autoDesenho();
+                }
+            }
         }
-    }
-    public void processaTudo(ArrayList<Personagem> e){
-        Skooter skooter = (Skooter)e.get(0);
-        // verifica todos os personagens que nao sao skooter
-        // e, se encontra um que é transponível, remove o mesmo;
-        Personagem pTemp;
-        for(int i = 1; i < e.size(); i++){
-            pTemp = e.get(i);
-            if(skooter.getPosicao().igual(pTemp.getPosicao()))
-                if(pTemp.isbTransponivel())
-                    e.remove(pTemp);
-        }        
-    }
-    
-    /*Retorna true se a posicao p é válida para Skooter com relacao a todos os personagens no array*/
-    public boolean ehPosicaoValida(ArrayList<Personagem> e, Posicao p){
-        Personagem pTemp;
-        for(int i = 1; i < e.size(); i++){
-            pTemp = e.get(i);            
-            if(!pTemp.isbTransponivel())
-                if(pTemp.getPosicao().igual(p))
-                    return false;
-        }        
-        return true;
     }
 }

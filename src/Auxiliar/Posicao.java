@@ -3,8 +3,8 @@ package Auxiliar;
 import Controler.MatrizObjetos;
 
 import java.io.Serializable;
-
-import static Auxiliar.Util.*;
+import Auxiliar.Consts;
+import Modelo.ParteMenu;
 
 public class Posicao implements Serializable{
     private int	linha;
@@ -13,7 +13,7 @@ public class Posicao implements Serializable{
 
 
     public Posicao(int linha, int coluna){
-        this.direcao = BAIXO;
+        this.direcao = Consts.BAIXO;
         this.setPosicao(linha,coluna);
     }
 
@@ -40,17 +40,17 @@ public class Posicao implements Serializable{
         return direcao;
     }
 
+    public void setLinha(int linha) {
+        this.linha = linha;
+    }
+
+    public void setColuna(int coluna) {
+        this.coluna = coluna;
+    }
+
     public void setDirecao(int direcao) {
         this.direcao = direcao;
     }
-
-    public boolean igual(Posicao posicao){
-        return (linha == posicao.getLinha() && coluna == posicao.getColuna());
-    }
-    public boolean copia(Posicao posicao){
-        return this.setPosicao(posicao.getLinha(),posicao.getColuna());
-    }
-
 
     public boolean moveUp(){
         return this.setPosicao(this.getLinha()-1, this.getColuna());
@@ -68,10 +68,10 @@ public class Posicao implements Serializable{
     public boolean breakBlock(){
         int linhaDeletada = this.linha;
         int colunaDeletada = this.coluna;
-        if(this.direcao == CIMA) linhaDeletada -= 1;
-        if(this.direcao == BAIXO) linhaDeletada += 1;
-        if(this.direcao == DIREITA) colunaDeletada += 1;
-        if(this.direcao == ESQUERDA) colunaDeletada -= 1;
+        if(this.direcao == Consts.CIMA) linhaDeletada -= 1;
+        if(this.direcao == Consts.BAIXO) linhaDeletada += 1;
+        if(this.direcao == Consts.DIREITA) colunaDeletada += 1;
+        if(this.direcao == Consts.ESQUERDA) colunaDeletada -= 1;
         return MatrizObjetos.delete(linhaDeletada,colunaDeletada);
     }
 
