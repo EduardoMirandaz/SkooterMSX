@@ -1,9 +1,9 @@
 package Auxiliar;
 
 public class Util {
-    protected static final int CIMA = 0;
-    protected static final int DIREITA = 1;
-    protected static final int BAIXO = 2;
-    protected static final int ESQUERDA = 3;
+    public static final int CIMA = 0;
+    public static final int DIREITA = 1;
+    public static final int BAIXO = 2;
+    public static final int ESQUERDA = 3;
 
 }

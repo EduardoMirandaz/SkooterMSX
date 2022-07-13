@@ -118,7 +118,6 @@ public abstract class Personagem implements Serializable {
     }
 
     public boolean moveUp() {
-        this.iImage = this.iTras;
         int linhaAtual = this.pPosicao.getLinha();
         int colunaAtual = this.pPosicao.getColuna();
         boolean moveu = this.pPosicao.moveUp();
@@ -130,7 +129,6 @@ public abstract class Personagem implements Serializable {
     }
 
     public boolean moveDown() {
-        iImage = iFrente;
         int linhaAtual = this.pPosicao.getLinha();
         int colunaAtual = this.pPosicao.getColuna();
         boolean moveu = this.pPosicao.moveDown();
@@ -142,7 +140,6 @@ public abstract class Personagem implements Serializable {
     }
 
     public boolean moveRight() {
-        iImage = iDireita;
         int linhaAtual = this.pPosicao.getLinha();
         int colunaAtual = this.pPosicao.getColuna();
         boolean moveu = this.pPosicao.moveRight();
@@ -153,7 +150,6 @@ public abstract class Personagem implements Serializable {
         return moveu;    }
 
     public boolean moveLeft() {
-        this.iImage = this.iEsquerda;
         int linhaAtual = this.pPosicao.getLinha();
         int colunaAtual = this.pPosicao.getColuna();
         boolean moveu = this.pPosicao.moveLeft();
