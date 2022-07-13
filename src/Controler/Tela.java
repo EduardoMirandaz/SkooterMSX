@@ -193,12 +193,13 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         if (!MatrizObjetos.isEmpty(MatrizObjetos.getMatrizDeObjetos())) {
             ArrayList<Personagem> personagens = new ArrayList<>();
             personagens = MatrizObjetos.getListaDePersonagens();
-            System.out.println(personagens);
-            for(Personagem p: personagens){
-                System.out.println(p.toString() + " -- " +p.getPosicao().getLinha() + " " + p.getPosicao().getColuna());
-                System.out.println();
-            }
-            System.out.println(personagens);
+
+//            System.out.println(personagens);
+//            for(Personagem p: personagens){
+//                System.out.println(p.toString() + " -- " +p.getPosicao().getLinha() + " " + p.getPosicao().getColuna());
+//                System.out.println();
+//            }
+//            System.out.println(personagens);
             this.controleDeJogo.desenhaTudo(personagens);
             this.controleDeJogo.processaTudo(personagens);
         }

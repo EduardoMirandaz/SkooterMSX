@@ -76,8 +76,6 @@ public class MatrizObjetos {
 
     public static ArrayList<Personagem> getListaDePersonagens(){
         ArrayList<Personagem> personagens = new ArrayList<>();
-
-        personagens = new ArrayList<>();
         boolean achouSkooter = false;
         for(int i = 0; i < matrizDeObjetos.length && !achouSkooter; i++){
             for (int j = 0; j < matrizDeObjetos.length; j++){
@@ -89,17 +87,12 @@ public class MatrizObjetos {
             }
         }
         if(!achouSkooter){
-            System.out.println("CADE O SKOOTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER");
             for (int i = 0; i < Consts.RESOLUCAO; i++){
                 System.arraycopy(Tela.estadoInicialFase[i], 0, matrizDeObjetos[i], 0, Consts.RESOLUCAO);
             }
-            System.out.println("ESTADO INICIAL FASE\n=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-            System.out.println("\n\n\n\n\nprintando estado inicial fase");
             for(int i = 0; i < 11; i++){
                 System.out.println(Arrays.toString(Tela.estadoInicialFase[i]));
             }
-            System.out.println("\n\n\n\n\n");
-            System.out.println("TERMINEI DE PRINTAR O ESTADO INICIAL FASE\n=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
             for(int i = 0; i < matrizDeObjetos.length && !achouSkooter; i++){
                 for (int j = 0; j < matrizDeObjetos.length; j++){
                     if(matrizDeObjetos[i][j] instanceof Skooter){
@@ -110,12 +103,10 @@ public class MatrizObjetos {
                 }
             }
         }
-        if(achouSkooter)
-            System.out.println("ACHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEI");
-        for(int i = 0; i < matrizDeObjetos.length; i++){
-            for (int j = 0; j < matrizDeObjetos.length; j++){
-                if(matrizDeObjetos[i][j] != null && !(matrizDeObjetos[i][j] instanceof Skooter)){
-                    personagens.add(matrizDeObjetos[i][j]);
+        for (Personagem[] matrizDeObjeto : matrizDeObjetos) {
+            for (int j = 0; j < matrizDeObjetos.length; j++) {
+                if (matrizDeObjeto[j] != null && !(matrizDeObjeto[j] instanceof Skooter)) {
+                    personagens.add(matrizDeObjeto[j]);
                 }
             }
         }
