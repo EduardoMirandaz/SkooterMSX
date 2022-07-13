@@ -47,14 +47,11 @@ import static Modelo.BlocoQuebravel.posicoesBlocosQuebraveis;
  */
 public class Tela extends javax.swing.JFrame implements MouseListener, KeyListener {
 
-    private Skooter lSkooter;
-    private ArrayList<Personagem> personagens;
     private ControleDeJogo controleDeJogo = new ControleDeJogo();
+
+    private Skooter skooter;
     private Graphics graphics_1;
-
-
-    public static ArrayList<Bloco> blocosFase1;
-
+    public static Personagem[][] estadoInicialFase;
 
     /**
      * Creates new form tabuleiro
@@ -70,57 +67,52 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
 
         this.addKeyListener(this);   /*teclado*/
         /*Cria a janela do tamanho do tabuleiro + insets (bordas) da janela*/
-        this.setSize(Consts.RES * Consts.CELL_SIDE + getInsets().left + getInsets().right,
-                Consts.RES * Consts.CELL_SIDE + getInsets().top + getInsets().bottom);
+        this.setSize((Consts.RESOLUCAO +Consts.LARGURA_MENU) * Consts.CELL_SIDE + getInsets().left + getInsets().right,
+                Consts.RESOLUCAO * Consts.CELL_SIDE + getInsets().top + getInsets().bottom);
 
-        personagens = new ArrayList<Personagem>(121);
 
         /*Cria e adiciona personagens*/
-        lSkooter = new Skooter("skooter/skooterFrente.png", "skooter/skooterTras.png", "skooter/skooterDireita.png", "skooter/skooterEsquerda.png");
-        lSkooter.setPosicao(0, 7);
-        this.addPersonagem(lSkooter);
-        MatrizObjetos.setMatrizDeObjetos(0,7, lSkooter);
+
+        MatrizObjetos.setMatrizDeObjetos(0,7, new Skooter("skooter/skooterFrente.png", "skooter/skooterTras.png", "skooter/skooterDireita.png", "skooter/skooterEsquerda.png"));
+        MatrizObjetos.getMatrizDeObjetos()[0][7].setPosicao(0,7);
+        skooter = (Skooter) MatrizObjetos.getMatrizDeObjetos()[0][7];
+//        this.addPersonagem(MatrizObjetos.getMatrizDeObjetos()[0][7]);
+
 
         Inimigo inimigoAmarelo = new Inimigo("inimigos/inimigoAmareloFrente.png","inimigos/inimigoAmareloTras.png","inimigos/inimigoAmareloDireita.png","inimigos/inimigoAmareloEsquerda.png");
         inimigoAmarelo.setPosicao(1, 0);
-        this.addPersonagem(inimigoAmarelo);
+//        this.addPersonagem(inimigoAmarelo);
         MatrizObjetos.setMatrizDeObjetos(1,0, inimigoAmarelo);
 
         Inimigo inimigoRosa = new Inimigo("inimigos/inimigoRosaFrente.png","inimigos/inimigoRosaTras.png","inimigos/inimigoRosaDireita.png","inimigos/inimigoRosaEsquerda.png");
         inimigoRosa.setPosicao(0, 9);
-        this.addPersonagem(inimigoRosa);
+//        this.addPersonagem(inimigoRosa);
         MatrizObjetos.setMatrizDeObjetos(0,9, inimigoRosa);
 
 
         Inimigo inimigoAzul = new Inimigo("inimigos/inimigoAzulFrente.png","inimigos/inimigoAzulTras.png","inimigos/inimigoAzulDireita.png","inimigos/inimigoAzulEsquerda.png");
         inimigoAzul.setPosicao(10, 1);
-        this.addPersonagem(inimigoAzul);
+//        this.addPersonagem(inimigoAzul);
         MatrizObjetos.setMatrizDeObjetos(10,1, inimigoAzul);
 
         Inimigo inimigoVerde = new Inimigo("inimigos/inimigoVerdeFrente.png","inimigos/inimigoVerdeTras.png","inimigos/inimigoVerdeDireita.png","inimigos/inimigoVerdeEsquerda.png");
         inimigoVerde.setPosicao(10, 9);
-        this.addPersonagem(inimigoVerde);
+//        this.addPersonagem(inimigoVerde);
         MatrizObjetos.setMatrizDeObjetos(10,9, inimigoVerde);
 
-        Coletavel uva = new Coletavel("coletaveis/uva.png");
-        uva.setPosicao(0, 0);
-        this.addPersonagem(uva);
-        MatrizObjetos.setMatrizDeObjetos(0,0, uva);
 
-        Coletavel limao = new Coletavel("coletaveis/limao.png");
-        limao.setPosicao(0, 10);
-        this.addPersonagem(limao);
-        MatrizObjetos.setMatrizDeObjetos(0,10, limao);
+        MatrizObjetos.setMatrizDeObjetos(0,0, new Coletavel("coletaveis/uva.png"));
+        MatrizObjetos.getMatrizDeObjetos()[0][0].setPosicao(0,0);
 
-        Coletavel morango = new Coletavel("coletaveis/morango.png");
-        morango.setPosicao(10, 0);
-        this.addPersonagem(morango);
-        MatrizObjetos.setMatrizDeObjetos(10,0, morango);
 
-        Coletavel cereja = new Coletavel("coletaveis/cereja.png");
-        cereja.setPosicao(10, 10);
-        this.addPersonagem(cereja);
-        MatrizObjetos.setMatrizDeObjetos(10,10, cereja);
+        MatrizObjetos.setMatrizDeObjetos(0,10, new Coletavel("coletaveis/limao.png"));
+        MatrizObjetos.getMatrizDeObjetos()[0][10].setPosicao(0,10);
+
+        MatrizObjetos.setMatrizDeObjetos(10,0, new Coletavel("coletaveis/morango.png"));
+        MatrizObjetos.getMatrizDeObjetos()[10][0].setPosicao(10,0);
+
+        MatrizObjetos.setMatrizDeObjetos(10,10, new Coletavel("coletaveis/cereja.png"));
+        MatrizObjetos.getMatrizDeObjetos()[10][10].setPosicao(10,10);
 
 
         posicoesBlocosFixos = new Integer[][]{
@@ -134,8 +126,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         for (Integer[] posicoesBlocosFixo : posicoesBlocosFixos) {
             BlocoFixo blocoFixo = new BlocoFixo("blocos/blocoVermelhoFixo.png");
             blocoFixo.setPosicao(posicoesBlocosFixo[0], posicoesBlocosFixo[1]);
-            matrizObjetos.setMatrizDeObjetos(posicoesBlocosFixo[0], posicoesBlocosFixo[1], blocoFixo);
-            this.addPersonagem(blocoFixo);
+            MatrizObjetos.setMatrizDeObjetos(posicoesBlocosFixo[0], posicoesBlocosFixo[1], blocoFixo);
         }
 
         posicoesBlocosQuebraveis = new Integer[][]{
@@ -154,22 +145,22 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         for (Integer[] posicoesBlocosQuebraveis : posicoesBlocosQuebraveis) {
             BlocoQuebravel blocoQuebravel = new BlocoQuebravel("blocos/blocoVerdeQuebravel.png");
             blocoQuebravel.setPosicao(posicoesBlocosQuebraveis[0], posicoesBlocosQuebraveis[1]);
-            matrizObjetos.setMatrizDeObjetos(posicoesBlocosQuebraveis[0], posicoesBlocosQuebraveis[1], blocoQuebravel);
-            this.addPersonagem(blocoQuebravel);
+            MatrizObjetos.setMatrizDeObjetos(posicoesBlocosQuebraveis[0], posicoesBlocosQuebraveis[1], blocoQuebravel);
         }
-        System.out.println();
+
+        estadoInicialFase = new Personagem[Consts.RESOLUCAO][Consts.RESOLUCAO];
+        for (int i = 0; i < Consts.RESOLUCAO; i++){
+            System.arraycopy(matrizDeObjetos[i], 0, estadoInicialFase[i], 0, Consts.RESOLUCAO);
+        }
+        System.out.println("\n\n\n\n\nprintando estado inicial fase");
         for(int i = 0; i < 11; i++){
-            System.out.println(Arrays.toString(matrizDeObjetos[i]));
+            System.out.println(Arrays.toString(estadoInicialFase[i]));
         }
-
+        System.out.println("\n\n\n\n\n");
     }
 
-    public void addPersonagem(Personagem umPersonagem) {
-        personagens.add(umPersonagem);
-    }
-
-    public void removePersonagem(Personagem umPersonagem) {
-        personagens.remove(umPersonagem);
+    public static void setEstadoInicialFase(Personagem[][] estadoInicialFase) {
+        Tela.estadoInicialFase = estadoInicialFase;
     }
 
     public Graphics getGraphicsBuffer(){
@@ -180,8 +171,8 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         /*Criamos um contexto gráfico*/
         graphics_1 = graphics_2.create(getInsets().left, getInsets().top, getWidth() - getInsets().right, getHeight() - getInsets().top);
         /*************Desenha cenário de fundo**************/
-        for (int i = 0; i < Consts.RES; i++) {
-            for (int j = 0; j < Consts.RES; j++) {
+        for (int i = 0; i < Consts.RESOLUCAO + Consts.LARGURA_MENU; i++) {
+            for (int j = 0; j < Consts.RESOLUCAO; j++) {
                 try {
                     Image newImage = Toolkit.getDefaultToolkit().getImage(new java.io.File(".").getCanonicalPath() + Consts.PATH + "fundo/fundo.png");
                     graphics_1.drawImage(newImage,
@@ -192,32 +183,24 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
                 }
             }
         }
-        if (!this.personagens.isEmpty()) {
-            ArrayList<Personagem> personagensParaProcessar = new ArrayList<>();
-            boolean achouSkooter = false;
-            for(int i = 0; i < matrizDeObjetos.length && !achouSkooter; i++){
-                for (int j = 0; j < matrizDeObjetos.length; j++){
-                    if(matrizDeObjetos[i][j] instanceof Skooter){
-                        personagensParaProcessar.add(matrizDeObjetos[i][j]);
-                        achouSkooter = true;
-                        break;
-                    }
-                }
-            }
-            for(int i = 0; i < matrizDeObjetos.length; i++){
-                for (int j = 0; j < matrizDeObjetos.length; j++){
-                   if(matrizDeObjetos[i][j] != null && !(matrizDeObjetos[i][j] instanceof Skooter)){
-                       personagensParaProcessar.add(matrizDeObjetos[i][j]);
-                   }
-                }
-            }
-            for(Personagem p: personagensParaProcessar){
+
+
+        for(int i = 0; i < 11; i++){
+            System.out.println(Arrays.toString(MatrizObjetos.getMatrizDeObjetos()[i]));
+        }
+
+
+        if (!MatrizObjetos.isEmpty(MatrizObjetos.getMatrizDeObjetos())) {
+            ArrayList<Personagem> personagens = new ArrayList<>();
+            personagens = MatrizObjetos.getListaDePersonagens();
+            System.out.println(personagens);
+            for(Personagem p: personagens){
                 System.out.println(p.toString() + " -- " +p.getPosicao().getLinha() + " " + p.getPosicao().getColuna());
                 System.out.println();
             }
-            System.out.println(personagensParaProcessar);
-            this.controleDeJogo.desenhaTudo(personagensParaProcessar);
-            this.controleDeJogo.processaTudo(personagensParaProcessar);
+            System.out.println(personagens);
+            this.controleDeJogo.desenhaTudo(personagens);
+            this.controleDeJogo.processaTudo(personagens);
         }
 
 
@@ -228,8 +211,13 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         }
     }
 
+    public static Personagem[][] getEstadoInicialFase() {
+        return estadoInicialFase;
+    }
 
-
+    public void removePersonagem(Personagem p){
+        MatrizObjetos.setMatrizDeObjetos(p.getPosicao().getLinha(), p.getPosicao().getColuna(), null);
+    }
     public void go() {
         TimerTask task = new TimerTask() {
             public void run() {
@@ -242,15 +230,14 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
 
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_C) {
-            this.personagens.clear();
+            MatrizObjetos.getListaDePersonagens().clear();
         } else if (e.getKeyCode() == KeyEvent.VK_L) {
             try {
                 File tanque = new File("c:\\temp\\POO.zip");
                 FileInputStream canoOut = new FileInputStream(tanque);
                 GZIPInputStream compactador = new GZIPInputStream(canoOut);
                 ObjectInputStream serializador = new ObjectInputStream(compactador);
-                this.personagens = (ArrayList<Personagem>)serializador.readObject();
-                this.lSkooter = (Skooter)this.personagens.get(0);
+                MatrizObjetos.setMatrizDeObjetos((Personagem[][])serializador.readObject());
                 serializador.close();
             } catch (Exception ex) {
                 Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
@@ -262,26 +249,26 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
                 FileOutputStream canoOut = new FileOutputStream(tanque);
                 GZIPOutputStream compactador = new GZIPOutputStream(canoOut);
                 ObjectOutputStream serializador = new ObjectOutputStream(compactador);
-                serializador.writeObject(this.personagens);
+                serializador.writeObject(matrizDeObjetos);
                 serializador.flush();
                 serializador.close();
             } catch (IOException ex) {
                 Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            lSkooter.moveUp();
+            skooter.moveUp();
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            lSkooter.moveDown();
+            skooter.moveDown();
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            lSkooter.moveLeft();
+            skooter.moveLeft();
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            lSkooter.moveRight();
+            skooter.moveRight();
         } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            lSkooter.breakBlock();
+            skooter.breakBlock();
         }
 
-        this.setTitle("-> Cell: " + (lSkooter.getPosicao().getColuna()) + ", "
-                + (lSkooter.getPosicao().getLinha()));
+        this.setTitle("-> Cell: " + (skooter.getPosicao().getColuna()) + ", "
+                + (skooter.getPosicao().getLinha()));
 
         //repaint(); /*invoca o paint imediatamente, sem aguardar o refresh*/
     }

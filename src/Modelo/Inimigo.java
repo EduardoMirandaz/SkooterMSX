@@ -1,18 +1,11 @@
 package Modelo;
 
         import Auxiliar.Consts;
-        import Auxiliar.Desenho;
         import Controler.MatrizObjetos;
+        import Controler.Tela;
 
-        import java.awt.Graphics;
-        import java.awt.Graphics2D;
-        import java.awt.geom.AffineTransform;
-        import java.io.IOException;
         import java.io.Serializable;
         import java.util.Random;
-        import javax.swing.ImageIcon;
-        import javax.swing.JFrame;
-        import javax.swing.JPanel;
 
         import static Auxiliar.Util.*;
         import static Auxiliar.Util.ESQUERDA;
@@ -70,7 +63,7 @@ public class Inimigo extends Personagem  implements Serializable {
         this.iImage = this.iDireita;
         this.getPosicao().setDirecao(DIREITA);
         int indexColuna = this.getPosicao().getColuna()+1;
-        if(indexColuna >= Consts.RES) return false;
+        if(indexColuna >= Consts.RESOLUCAO) return false;
         return verificarProximoPasso(
                 MatrizObjetos.getMatrizDeObjetos()[this.getPosicao().getLinha()][indexColuna],
                 DIREITA
@@ -81,7 +74,7 @@ public class Inimigo extends Personagem  implements Serializable {
         this.iImage = this.iFrente;
         this.getPosicao().setDirecao(BAIXO);
         int indexLinha = this.getPosicao().getLinha()+1;
-        if(indexLinha >= Consts.RES) return false;
+        if(indexLinha >= Consts.RESOLUCAO) return false;
         return verificarProximoPasso(
                 MatrizObjetos.getMatrizDeObjetos()[indexLinha][this.getPosicao().getColuna()],
                 BAIXO

@@ -1,15 +1,17 @@
 package Controler;
 
+import Auxiliar.Consts;
 import Auxiliar.Desenho;
-import Modelo.Bloco;
 import Modelo.BlocoQuebravel;
 import Modelo.Personagem;
+import Modelo.Skooter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MatrizObjetos {
     public static Personagem[][] matrizDeObjetos;
+
 
     public MatrizObjetos() {
         matrizDeObjetos = new Personagem[11][11];
@@ -36,9 +38,13 @@ public class MatrizObjetos {
         matrizDeObjetos[linha][coluna] = personagem;
     }
 
+    public static void setMatrizDeObjetos(Personagem[][] matriz) {
+        matrizDeObjetos = matriz;
+    }
+
     public static boolean delete(int linha, int coluna){
-        if(linha < 0 || linha >= Auxiliar.Consts.RES ||
-                (coluna < 0 || coluna >= Auxiliar.Consts.RES)){
+        if(linha < 0 || linha >= Auxiliar.Consts.RESOLUCAO ||
+                (coluna < 0 || coluna >= Auxiliar.Consts.RESOLUCAO)){
             System.out.println("nao quebrei, borda");
             return false;
         }
@@ -56,4 +62,64 @@ public class MatrizObjetos {
 
         return false;
     }
+
+    public static boolean isEmpty(Personagem[][] p){
+        for (Personagem[] personagems : p) {
+            for (int j = 0; j < p.length; j++) {
+                if (personagems[j] != null) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static ArrayList<Personagem> getListaDePersonagens(){
+        ArrayList<Personagem> personagens = new ArrayList<>();
+
+        personagens = new ArrayList<>();
+        boolean achouSkooter = false;
+        for(int i = 0; i < matrizDeObjetos.length && !achouSkooter; i++){
+            for (int j = 0; j < matrizDeObjetos.length; j++){
+                if(matrizDeObjetos[i][j] instanceof Skooter){
+                    personagens.add(matrizDeObjetos[i][j]);
+                    achouSkooter = true;
+                    break;
+                }
+            }
+        }
+        if(!achouSkooter){
+            System.out.println("CADE O SKOOTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER");
+            for (int i = 0; i < Consts.RESOLUCAO; i++){
+                System.arraycopy(Tela.estadoInicialFase[i], 0, matrizDeObjetos[i], 0, Consts.RESOLUCAO);
+            }
+            System.out.println("ESTADO INICIAL FASE\n=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+            System.out.println("\n\n\n\n\nprintando estado inicial fase");
+            for(int i = 0; i < 11; i++){
+                System.out.println(Arrays.toString(Tela.estadoInicialFase[i]));
+            }
+            System.out.println("\n\n\n\n\n");
+            System.out.println("TERMINEI DE PRINTAR O ESTADO INICIAL FASE\n=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+            for(int i = 0; i < matrizDeObjetos.length && !achouSkooter; i++){
+                for (int j = 0; j < matrizDeObjetos.length; j++){
+                    if(matrizDeObjetos[i][j] instanceof Skooter){
+                        personagens.add(matrizDeObjetos[i][j]);
+                        achouSkooter = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if(achouSkooter)
+            System.out.println("ACHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEI");
+        for(int i = 0; i < matrizDeObjetos.length; i++){
+            for (int j = 0; j < matrizDeObjetos.length; j++){
+                if(matrizDeObjetos[i][j] != null && !(matrizDeObjetos[i][j] instanceof Skooter)){
+                    personagens.add(matrizDeObjetos[i][j]);
+                }
+            }
+        }
+        return personagens;
+    }
+
 }

@@ -1,13 +1,10 @@
 package Auxiliar;
 
 import Controler.MatrizObjetos;
-import Modelo.Inimigo;
-import Modelo.Skooter;
 
 import java.io.Serializable;
 
 import static Auxiliar.Util.*;
-import static Controler.MatrizObjetos.matrizDeObjetos;
 
 public class Posicao implements Serializable{
     private int	linha;
@@ -22,8 +19,8 @@ public class Posicao implements Serializable{
 
 
     public boolean setPosicao(int linha, int coluna){
-        if(linha < 0 || linha >= Auxiliar.Consts.RES ||
-          (coluna < 0 || coluna >= Auxiliar.Consts.RES)){
+        if(linha < 0 || linha >= Auxiliar.Consts.RESOLUCAO ||
+          (coluna < 0 || coluna >= Auxiliar.Consts.RESOLUCAO)){
             return false;
         }
         this.linha = linha;

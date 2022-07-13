@@ -8,7 +8,10 @@ package Auxiliar;
 import java.awt.Graphics;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
+
+import Controler.MatrizObjetos;
 import Controler.Tela;
+import Modelo.Personagem;
 
 /**
  *
@@ -31,4 +34,5 @@ public class Desenho implements Serializable {
     public static void desenhar(ImageIcon iImage, int iColuna, int iLinha) {
         iImage.paintIcon(jCenario,getGraphicsDaTela(),iColuna * Consts.CELL_SIDE, iLinha * Consts.CELL_SIDE);
     }
+
 }

@@ -7,6 +7,7 @@ package Modelo;
 
 import Auxiliar.Consts;
 import Controler.MatrizObjetos;
+import Controler.Tela;
 
 import java.io.Serializable;
 
@@ -37,7 +38,7 @@ public class Skooter extends Personagem implements Serializable{
         this.iImage = this.iDireita;
         this.getPosicao().setDirecao(DIREITA);
         int indexColuna = this.getPosicao().getColuna()+1;
-        if(indexColuna >= Consts.RES) return false;
+        if(indexColuna >= Consts.RESOLUCAO) return false;
         return verificarProximoPasso(
                 MatrizObjetos.getMatrizDeObjetos()[this.getPosicao().getLinha()][indexColuna],
                 DIREITA
@@ -48,7 +49,7 @@ public class Skooter extends Personagem implements Serializable{
         this.iImage = this.iFrente;
         this.getPosicao().setDirecao(BAIXO);
         int indexLinha = this.getPosicao().getLinha()+1;
-        if(indexLinha >= Consts.RES) return false;
+        if(indexLinha >= Consts.RESOLUCAO) return false;
         return verificarProximoPasso(
                 MatrizObjetos.getMatrizDeObjetos()[indexLinha][this.getPosicao().getColuna()],
                 BAIXO
@@ -67,8 +68,8 @@ public class Skooter extends Personagem implements Serializable{
         );
     }
 
-    public boolean verificarProximoPasso(Personagem personagemDePossivelConflito, int direcao){
-        if(personagemDePossivelConflito instanceof Bloco)
+    public boolean verificarProximoPasso(Personagem personagemDePossivelConflito, int direcao) {
+        if (personagemDePossivelConflito instanceof Bloco)
             return false;
 
         switch (direcao){
