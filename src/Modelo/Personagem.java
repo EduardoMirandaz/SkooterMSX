@@ -6,6 +6,7 @@ package Modelo;
 
 import Auxiliar.Consts;
 import Auxiliar.Desenho;
+import Controler.MatrizObjetos;
 import Controler.Tela;
 import Auxiliar.Posicao;
 import java.awt.Graphics;
@@ -33,7 +34,7 @@ public abstract class Personagem implements Serializable {
 
 
     protected Personagem(String imagemFrente, String imagemTras, String imagemDireita, String imagemEsquerda) {
-        this.pPosicao = new Posicao(1, 1);
+        this.pPosicao = new Posicao(0, 0);
         this.bTransponivel = true;
         this.bMortal = false;
         try {
@@ -73,7 +74,7 @@ public abstract class Personagem implements Serializable {
     }
 
     protected Personagem(String image) {
-        this.pPosicao = new Posicao(2, 1);
+        this.pPosicao = new Posicao(0, 0);
         this.bTransponivel = true;
         this.bMortal = false;
         try {
@@ -117,26 +118,52 @@ public abstract class Personagem implements Serializable {
     }
 
     public boolean moveUp() {
+        this.iImage = this.iTras;
+        int linhaAtual = this.pPosicao.getLinha();
+        int colunaAtual = this.pPosicao.getColuna();
         boolean moveu = this.pPosicao.moveUp();
-        if (moveu) iImage = iTras;
+        if(moveu){
+            MatrizObjetos.setMatrizDeObjetos(linhaAtual,colunaAtual, null);
+            MatrizObjetos.setMatrizDeObjetos(this.pPosicao.getLinha(),this.pPosicao.getColuna(), this);
+        }
         return moveu;
     }
 
     public boolean moveDown() {
+        iImage = iFrente;
+        int linhaAtual = this.pPosicao.getLinha();
+        int colunaAtual = this.pPosicao.getColuna();
         boolean moveu = this.pPosicao.moveDown();
-        if (moveu) iImage = iFrente;
+        if(moveu){
+            MatrizObjetos.setMatrizDeObjetos(linhaAtual,colunaAtual, null);
+            MatrizObjetos.setMatrizDeObjetos(this.pPosicao.getLinha(),this.pPosicao.getColuna(), this);
+        }
         return moveu;
     }
 
     public boolean moveRight() {
+        iImage = iDireita;
+        int linhaAtual = this.pPosicao.getLinha();
+        int colunaAtual = this.pPosicao.getColuna();
         boolean moveu = this.pPosicao.moveRight();
-        if (moveu) iImage = iDireita;
-        return moveu;
-    }
+        if(moveu){
+            MatrizObjetos.setMatrizDeObjetos(linhaAtual,colunaAtual, null);
+            MatrizObjetos.setMatrizDeObjetos(this.pPosicao.getLinha(),this.pPosicao.getColuna(), this);
+        }
+        return moveu;    }
 
     public boolean moveLeft() {
+        this.iImage = this.iEsquerda;
+        int linhaAtual = this.pPosicao.getLinha();
+        int colunaAtual = this.pPosicao.getColuna();
         boolean moveu = this.pPosicao.moveLeft();
-        if (moveu) iImage = iEsquerda;
-        return moveu;
+        if(moveu){
+            MatrizObjetos.setMatrizDeObjetos(linhaAtual,colunaAtual, null);
+            MatrizObjetos.setMatrizDeObjetos(this.pPosicao.getLinha(),this.pPosicao.getColuna(), this);
+        }
+        return moveu;    }
+
+    public boolean breakBlock() {
+        return this.pPosicao.breakBlock();
     }
 }

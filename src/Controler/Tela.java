@@ -48,9 +48,9 @@ import static Modelo.BlocoQuebravel.posicoesBlocosQuebraveis;
 public class Tela extends javax.swing.JFrame implements MouseListener, KeyListener {
 
     private Skooter lSkooter;
-    private ArrayList<Personagem> e;
-    private ControleDeJogo cj = new ControleDeJogo();
-    private Graphics g2;
+    private ArrayList<Personagem> personagens;
+    private ControleDeJogo controleDeJogo = new ControleDeJogo();
+    private Graphics graphics_1;
 
 
     public static ArrayList<Bloco> blocosFase1;
@@ -73,44 +73,55 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         this.setSize(Consts.RES * Consts.CELL_SIDE + getInsets().left + getInsets().right,
                 Consts.RES * Consts.CELL_SIDE + getInsets().top + getInsets().bottom);
 
-        e = new ArrayList<Personagem>(121);
+        personagens = new ArrayList<Personagem>(121);
 
         /*Cria e adiciona personagens*/
         lSkooter = new Skooter("skooter/skooterFrente.png", "skooter/skooterTras.png", "skooter/skooterDireita.png", "skooter/skooterEsquerda.png");
         lSkooter.setPosicao(0, 7);
         this.addPersonagem(lSkooter);
+        MatrizObjetos.setMatrizDeObjetos(0,7, lSkooter);
 
         Inimigo inimigoAmarelo = new Inimigo("inimigos/inimigoAmareloFrente.png","inimigos/inimigoAmareloTras.png","inimigos/inimigoAmareloDireita.png","inimigos/inimigoAmareloEsquerda.png");
         inimigoAmarelo.setPosicao(1, 0);
         this.addPersonagem(inimigoAmarelo);
+        MatrizObjetos.setMatrizDeObjetos(1,0, inimigoAmarelo);
 
         Inimigo inimigoRosa = new Inimigo("inimigos/inimigoRosaFrente.png","inimigos/inimigoRosaTras.png","inimigos/inimigoRosaDireita.png","inimigos/inimigoRosaEsquerda.png");
         inimigoRosa.setPosicao(0, 9);
         this.addPersonagem(inimigoRosa);
+        MatrizObjetos.setMatrizDeObjetos(0,9, inimigoRosa);
+
 
         Inimigo inimigoAzul = new Inimigo("inimigos/inimigoAzulFrente.png","inimigos/inimigoAzulTras.png","inimigos/inimigoAzulDireita.png","inimigos/inimigoAzulEsquerda.png");
         inimigoAzul.setPosicao(10, 1);
         this.addPersonagem(inimigoAzul);
+        MatrizObjetos.setMatrizDeObjetos(10,1, inimigoAzul);
 
         Inimigo inimigoVerde = new Inimigo("inimigos/inimigoVerdeFrente.png","inimigos/inimigoVerdeTras.png","inimigos/inimigoVerdeDireita.png","inimigos/inimigoVerdeEsquerda.png");
         inimigoVerde.setPosicao(10, 9);
         this.addPersonagem(inimigoVerde);
+        MatrizObjetos.setMatrizDeObjetos(10,9, inimigoVerde);
 
         Coletavel uva = new Coletavel("coletaveis/uva.png");
         uva.setPosicao(0, 0);
         this.addPersonagem(uva);
+        MatrizObjetos.setMatrizDeObjetos(0,0, uva);
 
         Coletavel limao = new Coletavel("coletaveis/limao.png");
         limao.setPosicao(0, 10);
         this.addPersonagem(limao);
+        MatrizObjetos.setMatrizDeObjetos(0,10, limao);
 
         Coletavel morango = new Coletavel("coletaveis/morango.png");
         morango.setPosicao(10, 0);
         this.addPersonagem(morango);
+        MatrizObjetos.setMatrizDeObjetos(10,0, morango);
 
         Coletavel cereja = new Coletavel("coletaveis/cereja.png");
         cereja.setPosicao(10, 10);
         this.addPersonagem(cereja);
+        MatrizObjetos.setMatrizDeObjetos(10,10, cereja);
+
 
         posicoesBlocosFixos = new Integer[][]{
                 {1, 1}, {1, 3}, {1, 5}, {1, 7}, {1, 9},
@@ -128,7 +139,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         }
 
         posicoesBlocosQuebraveis = new Integer[][]{
-                {0,1},{1,3},
+                {0,1},
                 {1,2},{1,8},{1,10},
                 {2,1},{2,5},
                 {3,0},{3,8},
@@ -154,26 +165,26 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
     }
 
     public void addPersonagem(Personagem umPersonagem) {
-        e.add(umPersonagem);
+        personagens.add(umPersonagem);
     }
 
     public void removePersonagem(Personagem umPersonagem) {
-        e.remove(umPersonagem);
+        personagens.remove(umPersonagem);
     }
 
     public Graphics getGraphicsBuffer(){
-        return g2;
+        return graphics_1;
     }
     public void paint(Graphics gOld) {
-        Graphics g = this.getBufferStrategy().getDrawGraphics();
+        Graphics graphics_2 = this.getBufferStrategy().getDrawGraphics();
         /*Criamos um contexto gráfico*/
-        g2 = g.create(getInsets().left, getInsets().top, getWidth() - getInsets().right, getHeight() - getInsets().top);
+        graphics_1 = graphics_2.create(getInsets().left, getInsets().top, getWidth() - getInsets().right, getHeight() - getInsets().top);
         /*************Desenha cenário de fundo**************/
         for (int i = 0; i < Consts.RES; i++) {
             for (int j = 0; j < Consts.RES; j++) {
                 try {
                     Image newImage = Toolkit.getDefaultToolkit().getImage(new java.io.File(".").getCanonicalPath() + Consts.PATH + "fundo/fundo.png");
-                    g2.drawImage(newImage,
+                    graphics_1.drawImage(newImage,
                             j * Consts.CELL_SIDE, i * Consts.CELL_SIDE, Consts.CELL_SIDE, Consts.CELL_SIDE, null);
 
                 } catch (IOException ex) {
@@ -181,17 +192,43 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
                 }
             }
         }
-        if (!this.e.isEmpty()) {
-            this.cj.desenhaTudo(e);
-            this.cj.processaTudo(e);
+        if (!this.personagens.isEmpty()) {
+            ArrayList<Personagem> personagensParaProcessar = new ArrayList<>();
+            boolean achouSkooter = false;
+            for(int i = 0; i < matrizDeObjetos.length && !achouSkooter; i++){
+                for (int j = 0; j < matrizDeObjetos.length; j++){
+                    if(matrizDeObjetos[i][j] instanceof Skooter){
+                        personagensParaProcessar.add(matrizDeObjetos[i][j]);
+                        achouSkooter = true;
+                        break;
+                    }
+                }
+            }
+            for(int i = 0; i < matrizDeObjetos.length; i++){
+                for (int j = 0; j < matrizDeObjetos.length; j++){
+                   if(matrizDeObjetos[i][j] != null && !(matrizDeObjetos[i][j] instanceof Skooter)){
+                       personagensParaProcessar.add(matrizDeObjetos[i][j]);
+                   }
+                }
+            }
+            for(Personagem p: personagensParaProcessar){
+                System.out.println(p.toString() + " -- " +p.getPosicao().getLinha() + " " + p.getPosicao().getColuna());
+                System.out.println();
+            }
+            System.out.println(personagensParaProcessar);
+            this.controleDeJogo.desenhaTudo(personagensParaProcessar);
+            this.controleDeJogo.processaTudo(personagensParaProcessar);
         }
 
-        g.dispose();
-        g2.dispose();
+
+        graphics_2.dispose();
+        graphics_1.dispose();
         if (!getBufferStrategy().contentsLost()) {
             getBufferStrategy().show();
         }
     }
+
+
 
     public void go() {
         TimerTask task = new TimerTask() {
@@ -205,15 +242,15 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
 
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_C) {
-            this.e.clear();
+            this.personagens.clear();
         } else if (e.getKeyCode() == KeyEvent.VK_L) {
             try {
                 File tanque = new File("c:\\temp\\POO.zip");
                 FileInputStream canoOut = new FileInputStream(tanque);
                 GZIPInputStream compactador = new GZIPInputStream(canoOut);
                 ObjectInputStream serializador = new ObjectInputStream(compactador);
-                this.e = (ArrayList<Personagem>)serializador.readObject();
-                this.lSkooter = (Skooter)this.e.get(0);
+                this.personagens = (ArrayList<Personagem>)serializador.readObject();
+                this.lSkooter = (Skooter)this.personagens.get(0);
                 serializador.close();
             } catch (Exception ex) {
                 Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
@@ -225,7 +262,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
                 FileOutputStream canoOut = new FileOutputStream(tanque);
                 GZIPOutputStream compactador = new GZIPOutputStream(canoOut);
                 ObjectOutputStream serializador = new ObjectOutputStream(compactador);
-                serializador.writeObject(this.e);
+                serializador.writeObject(this.personagens);
                 serializador.flush();
                 serializador.close();
             } catch (IOException ex) {
@@ -239,6 +276,8 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
             lSkooter.moveLeft();
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             lSkooter.moveRight();
+        } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            lSkooter.breakBlock();
         }
 
         this.setTitle("-> Cell: " + (lSkooter.getPosicao().getColuna()) + ", "

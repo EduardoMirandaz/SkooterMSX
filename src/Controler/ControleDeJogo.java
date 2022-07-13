@@ -11,10 +11,7 @@ import Modelo.Skooter;
 import Auxiliar.Posicao;
 import java.util.ArrayList;
 
-/**
- *
- * @author junio
- */
+
 public class ControleDeJogo {
     public void desenhaTudo(ArrayList<Personagem> e){
         for(int i = 0; i < e.size(); i++){
@@ -22,11 +19,13 @@ public class ControleDeJogo {
         }
     }
     public void processaTudo(ArrayList<Personagem> e){
-        Skooter bBomberman = (Skooter)e.get(0);
+        Skooter skooter = (Skooter)e.get(0);
+        // verifica todos os personagens que nao sao skooter
+        // e, se encontra um que é transponível, remove o mesmo;
         Personagem pTemp;
         for(int i = 1; i < e.size(); i++){
             pTemp = e.get(i);
-            if(bBomberman.getPosicao().igual(pTemp.getPosicao()))
+            if(skooter.getPosicao().igual(pTemp.getPosicao()))
                 if(pTemp.isbTransponivel())
                     e.remove(pTemp);
         }        
