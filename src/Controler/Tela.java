@@ -41,10 +41,6 @@ import static Controler.MatrizObjetos.matrizDeObjetos;
 import static Modelo.BlocoFixo.posicoesBlocosFixos;
 import static Modelo.BlocoQuebravel.posicoesBlocosQuebraveis;
 
-/**
- *
- * @author junio
- */
 public class Tela extends javax.swing.JFrame implements MouseListener, KeyListener {
 
     private ControleDeJogo controleDeJogo = new ControleDeJogo();

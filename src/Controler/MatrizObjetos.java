@@ -13,6 +13,7 @@ public class MatrizObjetos {
     public static Personagem[][] matrizDeObjetos;
 
 
+
     public MatrizObjetos() {
         matrizDeObjetos = new Personagem[Consts.RESOLUCAO][Consts.RESOLUCAO+Consts.LARGURA_MENU];
         for(int i = 0; i < Consts.RESOLUCAO; i++) Arrays.fill(matrizDeObjetos[i], null);
