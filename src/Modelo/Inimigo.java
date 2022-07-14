@@ -96,6 +96,9 @@ public class Inimigo extends Personagem  implements Serializable {
             return false;
         if(personagemDePossivelConflito instanceof Inimigo)
             return false;
+        if(personagemDePossivelConflito instanceof Skooter){
+
+        }
         switch (direcao){
             case Consts.CIMA -> {return super.moveUp();}
             case Consts.DIREITA -> {return super.moveRight();}

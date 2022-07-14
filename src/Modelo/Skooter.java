@@ -23,6 +23,24 @@ public class Skooter extends Personagem implements Serializable{
         multiplicadorDePontos = 1;
     }
 
+    public Integer getVidas() {
+        return vidas;
+    }
+
+    public Integer getPontos() {
+        return pontos;
+    }
+
+    public Integer getMultiplicadorDePontos() {
+        return multiplicadorDePontos;
+    }
+
+
+
+    public void setMultiplicadorDePontos(Integer multiplicadorDePontos) {
+        this.multiplicadorDePontos = multiplicadorDePontos;
+    }
+
     public Skooter(String imagem) {
         super(imagem);
     }

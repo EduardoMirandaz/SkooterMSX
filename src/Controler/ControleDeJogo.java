@@ -37,4 +37,32 @@ public class ControleDeJogo {
         MatrizObjetos.getMatrizDeObjetos()[1][11]
                 .setiImage("menu/menuNum"+sPontos[sPontos.length - 4]+".png");
     }
+
+    public static void atualizarRecord(Integer pontos){
+        System.out.println();
+        char sPontos[] = ("000"+ pontos.toString()).toCharArray();
+
+        MatrizObjetos.getMatrizDeObjetos()[10][12]
+                .setiImage("menu/menuNum"+sPontos[sPontos.length - 1]+".png");
+        MatrizObjetos.getMatrizDeObjetos()[10][11]
+                .setiImage("menu/menuNum"+sPontos[sPontos.length - 2]+".png");
+        MatrizObjetos.getMatrizDeObjetos()[10][10]
+                .setiImage("menu/menuNum"+sPontos[sPontos.length - 3]+".png");
+        MatrizObjetos.getMatrizDeObjetos()[10][9]
+                .setiImage("menu/menuNum"+sPontos[sPontos.length - 4]+".png");
+    }
+
+    public static void mostrarPontuacaoFinal(Integer pontos){
+        System.out.println();
+        char sPontos[] = ("000"+ pontos.toString()).toCharArray();
+
+        MatrizObjetos.getMatrizDeObjetos()[5][12]
+                .setiImage("menu/menuNum"+sPontos[sPontos.length - 1]+".png");
+        MatrizObjetos.getMatrizDeObjetos()[5][11]
+                .setiImage("menu/menuNum"+sPontos[sPontos.length - 2]+".png");
+        MatrizObjetos.getMatrizDeObjetos()[5][10]
+                .setiImage("menu/menuNum"+sPontos[sPontos.length - 3]+".png");
+        MatrizObjetos.getMatrizDeObjetos()[5][9]
+                .setiImage("menu/menuNum"+sPontos[sPontos.length - 4]+".png");
+    }
 }

@@ -46,12 +46,10 @@ public class MatrizObjetos {
     public static boolean delete(int linha, int coluna){
         if(linha < 0 || linha >= Auxiliar.Consts.RESOLUCAO ||
                 (coluna < 0 || coluna >= Auxiliar.Consts.RESOLUCAO)){
-            System.out.println("nao quebrei, borda");
             return false;
         }
 
         if(matrizDeObjetos[linha][coluna] == null){
-            System.out.println("nao quebrei, vazio!");
             return false;
         }
 
@@ -75,6 +73,10 @@ public class MatrizObjetos {
         return true;
     }
 
+    public static void apagarObjetos(){
+        for(int i = 0; i < Consts.RESOLUCAO; i++) Arrays.fill(matrizDeObjetos[i], null);
+    }
+
     public static ArrayList<Personagem> getListaDePersonagens(){
         ArrayList<Personagem> personagens = new ArrayList<>();
         boolean achouSkooter = false;
@@ -89,7 +91,7 @@ public class MatrizObjetos {
         }
         if(!achouSkooter){
             for (int i = 0; i < Consts.RESOLUCAO; i++){
-                System.arraycopy(Tela.estadoInicialFase[i], 0, matrizDeObjetos[i], 0, Consts.RESOLUCAO);
+                //System.arraycopy(Tela.estadoInicialFase[i], 0, matrizDeObjetos[i], 0, Consts.RESOLUCAO);
             }
 //            for(int i = 0; i < 11; i++){
 //                System.out.println(Arrays.toString(Tela.estadoInicialFase[i]));
@@ -112,6 +114,17 @@ public class MatrizObjetos {
             }
         }
         return personagens;
+    }
+
+    public static Skooter getSkooter(){
+        for(int i = 0; i < matrizDeObjetos.length; i++){
+            for (int j = 0; j < matrizDeObjetos[i].length; j++){
+                if(matrizDeObjetos[i][j] instanceof Skooter){
+                    return (Skooter) matrizDeObjetos[i][j];
+                }
+            }
+        }
+        return null;
     }
 
 }
