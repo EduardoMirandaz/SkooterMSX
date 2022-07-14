@@ -75,5 +75,4 @@ public class Posicao implements Serializable{
         return MatrizObjetos.delete(linhaDeletada,colunaDeletada);
     }
 
-
 }

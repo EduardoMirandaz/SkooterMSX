@@ -81,10 +81,10 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
                 {"menu/menuFase1.png","menu/menuFase2.png","menu/menuFase3.png","menu/menuFase4.png"},
                 {"menu/menuEmpty.png","menu/menuEmpty.png","menu/menuNum0.png","menu/menuNum1.png"},
                 {"menu/menuEmpty.png","menu/menuEmpty.png","menu/menuEmpty.png","menu/menuEmpty.png"},
-                {"menu/menuEmpty.png", "menu/menu100.png", "menu/menuX1.png", "menu/menuMorango.png"},
-                {"menu/menuEmpty.png", "menu/menu150.png", "menu/menuEmpty.png", "menu/menuLimao.png"},
-                {"menu/menuEmpty.png", "menu/menu200.png", "menu/menuEmpty.png", "menu/menuCereja.png"},
-                {"menu/menuEmpty.png", "menu/menu250.png", "menu/menuEmpty.png", "menu/menuUva.png"}
+                {"menu/menuEmpty.png", "menu/menu100.png", "menu/menuEmpty.png", "menu/menuColetavel1.png"},
+                {"menu/menuEmpty.png", "menu/menu150.png", "menu/menuEmpty.png", "menu/menuColetavel2.png"},
+                {"menu/menuEmpty.png", "menu/menu200.png", "menu/menuEmpty.png", "menu/menuColetavel3.png"},
+                {"menu/menuEmpty.png", "menu/menu250.png", "menu/menuEmpty.png", "menu/menuColetavel4.png"}
         };
         for(int i = 0; i < Consts.RESOLUCAO; i++){
             for(int j = 0; j < Consts.LARGURA_MENU; j++){
@@ -122,17 +122,17 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         MatrizObjetos.setMatrizDeObjetos(10,9, inimigoVerde);
 
 
-        MatrizObjetos.setMatrizDeObjetos(0,0, new Coletavel("coletaveis/uva.png"));
+        MatrizObjetos.setMatrizDeObjetos(0,0, new Coletavel("coletaveis/uva.png",4));
         MatrizObjetos.getMatrizDeObjetos()[0][0].setPosicao(0,0);
 
 
-        MatrizObjetos.setMatrizDeObjetos(0,10, new Coletavel("coletaveis/limao.png"));
+        MatrizObjetos.setMatrizDeObjetos(0,10, new Coletavel("coletaveis/limao.png",2));
         MatrizObjetos.getMatrizDeObjetos()[0][10].setPosicao(0,10);
 
-        MatrizObjetos.setMatrizDeObjetos(10,0, new Coletavel("coletaveis/morango.png"));
+        MatrizObjetos.setMatrizDeObjetos(10,0, new Coletavel("coletaveis/morango.png",1));
         MatrizObjetos.getMatrizDeObjetos()[10][0].setPosicao(10,0);
 
-        MatrizObjetos.setMatrizDeObjetos(10,10, new Coletavel("coletaveis/cereja.png"));
+        MatrizObjetos.setMatrizDeObjetos(10,10, new Coletavel("coletaveis/cereja.png",3));
         MatrizObjetos.getMatrizDeObjetos()[10][10].setPosicao(10,10);
 
 
@@ -175,11 +175,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         for (int i = 0; i < Consts.RESOLUCAO; i++){
             System.arraycopy(matrizDeObjetos[i], 0, estadoInicialFase[i], 0, Consts.RESOLUCAO);
         }
-        System.out.println("\n\n\n\n\nprintando estado inicial fase");
-        for(int i = 0; i < 11; i++){
-            System.out.println(Arrays.toString(estadoInicialFase[i]));
-        }
-        System.out.println("\n\n\n\n\n");
+//
     }
 
     public static void setEstadoInicialFase(Personagem[][] estadoInicialFase) {
@@ -208,9 +204,9 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         }
 
 
-        for(int i = 0; i < 11; i++){
-            System.out.println(Arrays.toString(MatrizObjetos.getMatrizDeObjetos()[i]));
-        }
+//        for(int i = 0; i < 11; i++){
+//            System.out.println(Arrays.toString(MatrizObjetos.getMatrizDeObjetos()[i]));
+//        }
 
 
         if (!MatrizObjetos.isEmpty(MatrizObjetos.getMatrizDeObjetos())) {

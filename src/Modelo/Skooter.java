@@ -6,14 +6,21 @@
 package Modelo;
 
 import Auxiliar.Consts;
+import Controler.ControleDeJogo;
 import Controler.MatrizObjetos;
 
 import java.io.Serializable;
 
 
 public class Skooter extends Personagem implements Serializable{
+    private Integer vidas;
+    private Integer pontos;
+    private Integer multiplicadorDePontos;
     public Skooter(String imagemFrente, String imagemTras, String imagemDireita, String imagemEsquerda) {
         super(imagemFrente, imagemTras, imagemDireita, imagemEsquerda);
+        vidas = 3;
+        pontos = 0;
+        multiplicadorDePontos = 1;
     }
 
     public Skooter(String imagem) {
@@ -69,6 +76,14 @@ public class Skooter extends Personagem implements Serializable{
     public boolean verificarProximoPasso(Personagem personagemDePossivelConflito, int direcao) {
         if (personagemDePossivelConflito instanceof Bloco)
             return false;
+        if (personagemDePossivelConflito instanceof Coletavel){
+            this.pontos += ((Coletavel) personagemDePossivelConflito).getValorEmPontos() * this.multiplicadorDePontos;
+            Integer indexColetavel = ((Coletavel) personagemDePossivelConflito).getIndexMenu();
+            MatrizObjetos.getMatrizDeObjetos()[6+indexColetavel][13].setiImage("menu/menuX"+multiplicadorDePontos+".png");
+            this.multiplicadorDePontos += 1;
+            ControleDeJogo.atualizarPlacar(pontos);
+        }
+
 
         switch (direcao){
             case Consts.CIMA -> {return super.moveUp();}

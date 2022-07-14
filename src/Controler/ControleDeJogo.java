@@ -23,4 +23,18 @@ public class ControleDeJogo {
             }
         }
     }
+
+    public static void atualizarPlacar(Integer pontos){
+        System.out.println();
+        char sPontos[] = ("000"+ pontos.toString()).toCharArray();
+
+        MatrizObjetos.getMatrizDeObjetos()[1][14]
+                .setiImage("menu/menuNum"+sPontos[sPontos.length - 1]+".png");
+        MatrizObjetos.getMatrizDeObjetos()[1][13]
+                .setiImage("menu/menuNum"+sPontos[sPontos.length - 2]+".png");
+        MatrizObjetos.getMatrizDeObjetos()[1][12]
+                .setiImage("menu/menuNum"+sPontos[sPontos.length - 3]+".png");
+        MatrizObjetos.getMatrizDeObjetos()[1][11]
+                .setiImage("menu/menuNum"+sPontos[sPontos.length - 4]+".png");
+    }
 }

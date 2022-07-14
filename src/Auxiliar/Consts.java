@@ -3,7 +3,7 @@ package Auxiliar;
 import java.io.File;
 
 public class Consts {
-    public static final int CELL_SIDE = 60;
+    public static final int CELL_SIDE = 50;
     public static final int LARGURA_MENU = 4;
 
     public static final int RESOLUCAO = 11;
