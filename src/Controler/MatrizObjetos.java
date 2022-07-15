@@ -17,9 +17,6 @@ public class MatrizObjetos {
     public MatrizObjetos() {
         matrizDeObjetos = new Personagem[Consts.RESOLUCAO][Consts.RESOLUCAO+Consts.LARGURA_MENU];
         for(int i = 0; i < Consts.RESOLUCAO; i++) Arrays.fill(matrizDeObjetos[i], null);
-//        for(int i = 0; i < Consts.RESOLUCAO; i++){
-//            System.out.println(Arrays.toString(matrizDeObjetos[i]));
-//        }
 
     }
 
@@ -31,7 +28,7 @@ public class MatrizObjetos {
         }
     }
 
-        public static Personagem[][] getMatrizDeObjetos() {
+    public static Personagem[][] getMatrizDeObjetos() {
         return matrizDeObjetos;
     }
 
@@ -91,12 +88,6 @@ public class MatrizObjetos {
             }
         }
         if(!achouSkooter){
-            for (int i = 0; i < Consts.RESOLUCAO; i++){
-                //System.arraycopy(Tela.estadoInicialFase[i], 0, matrizDeObjetos[i], 0, Consts.RESOLUCAO);
-            }
-//            for(int i = 0; i < 11; i++){
-//                System.out.println(Arrays.toString(Tela.estadoInicialFase[i]));
-//            }
             for(int i = 0; i < matrizDeObjetos.length && !achouSkooter; i++){
                 for (int j = 0; j < matrizDeObjetos.length; j++){
                     if(matrizDeObjetos[i][j] instanceof Skooter){
@@ -127,5 +118,4 @@ public class MatrizObjetos {
         }
         return null;
     }
-
 }

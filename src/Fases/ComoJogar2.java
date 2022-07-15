@@ -5,7 +5,7 @@ import Controler.MatrizObjetos;
 import Modelo.ParteMenu;
 
 public class ComoJogar2 {
-    public static void setMatrizParaComoJogar1() {
+    public static void setMatrizParaComoJogar2() {
 
         for(int i = 10; i >= 0; i--){
             for(int j = 14; j >= 0; j--){
@@ -13,6 +13,5 @@ public class ComoJogar2 {
                 ((ParteMenu)(MatrizObjetos.getMatrizDeObjetos()[10-i][14-j])).setPosicaoInMenu(10-i,14-j);
             }
         }
-        ControleDeJogo.atualizarRecord(0);
     }
 }

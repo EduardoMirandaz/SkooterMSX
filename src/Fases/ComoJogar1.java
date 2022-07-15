@@ -13,6 +13,5 @@ public class ComoJogar1 {
                 ((ParteMenu)(MatrizObjetos.getMatrizDeObjetos()[10-i][14-j])).setPosicaoInMenu(10-i,14-j);
             }
         }
-        ControleDeJogo.atualizarRecord(0);
     }
 }

@@ -46,11 +46,12 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
 
     private Graphics graphics_1;
 
+    private Integer telasIniciais;
     /**
      * Creates new form tabuleiro
      */
     public Tela() {
-
+        telasIniciais = 0;
         MatrizObjetos matrizObjetos = new MatrizObjetos();
 
         Desenho.setCenario(this);
@@ -64,7 +65,8 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
                 Consts.RESOLUCAO * Consts.CELL_SIDE + getInsets().top + getInsets().bottom);
 
 
-        TelaInicial.setMatrizParaTelaInicial();
+        ComoJogar1.setMatrizParaComoJogar1();
+
         skooter = MatrizObjetos.getSkooter();
     }
 
@@ -160,9 +162,19 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
                 skooter.moveRight();
         } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             if (skooter == null){
-                Fase1.setMatrizParaFase1();
-                skooter = MatrizObjetos.getSkooter();
-                skooter.telaFlag+=1;
+                if(telasIniciais == 0){
+                    telasIniciais += 1;
+                    ComoJogar2.setMatrizParaComoJogar2();
+                }
+                else if(telasIniciais == 1){
+                    telasIniciais += 1;
+                    TelaInicial.setMatrizParaTelaInicial();
+                }
+                else{
+                    Fase1.setMatrizParaFase1();
+                    skooter = MatrizObjetos.getSkooter();
+                    skooter.telaFlag+=1;
+                }
             }
             else{
                 skooter.breakBlock();

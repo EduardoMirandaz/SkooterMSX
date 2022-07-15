@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Controler;
 
 import Auxiliar.Consts;
@@ -13,12 +7,6 @@ import Fases.Fase3;
 import Fases.TelaFinal;
 import Modelo.Personagem;
 import Modelo.Skooter;
-import Auxiliar.Posicao;
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
-
 
 public class ControleDeJogo {
     public void desenhaTudo(Personagem[][] matrizDePersonagens){
@@ -32,7 +20,6 @@ public class ControleDeJogo {
     }
 
     public static void atualizarPlacar(Integer pontos){
-        System.out.println();
         char sPontos[] = ("000"+ pontos.toString()).toCharArray();
 
         MatrizObjetos.getMatrizDeObjetos()[1][14]
@@ -117,30 +104,7 @@ public class ControleDeJogo {
 
     public static Integer getMaxScore(){
         Integer valorRetornado = 0;
-        try{
 
-            String path = "./MaxScore.txt";
-            File tanque = new File(path);
-            if(!tanque.exists() || tanque.isDirectory()){
-                if(!tanque.createNewFile()){
-                    System.out.println("Não foi possível criar o arquivo de record!");
-                }
-                //Fluxo de saida de um arquivo
-                OutputStream os = new FileOutputStream(path); // nome do arquivo que será escrito
-                Writer wr = new OutputStreamWriter(os); // criação de um escritor
-                BufferedWriter br = new BufferedWriter(wr); // adiciono a um escritor de buffer
-                br.write(0);
-                return 0;
-            }
-
-            //Fluxo de saida de um arquivo
-            Scanner scanner = new Scanner(tanque);
-            valorRetornado = scanner.nextInt();
-
-            scanner.close();
-        }catch (Exception e){
-            e.getStackTrace();
-        }
         return valorRetornado;
     }
     public static void setMaxScore(Integer valor){

@@ -1,11 +1,6 @@
 package Auxiliar;
-
 import Controler.MatrizObjetos;
-
 import java.io.Serializable;
-import Auxiliar.Consts;
-import Modelo.ParteMenu;
-import Modelo.Skooter;
 
 public class Posicao implements Serializable{
     private int	linha;
@@ -17,7 +12,6 @@ public class Posicao implements Serializable{
         this.direcao = Consts.BAIXO;
         this.setPosicao(linha,coluna);
     }
-
 
     public boolean setPosicao(int linha, int coluna){
         if(linha < 0 || linha >= Auxiliar.Consts.RESOLUCAO ||
@@ -35,10 +29,6 @@ public class Posicao implements Serializable{
 
     public int getColuna(){
         return coluna;
-    }
-
-    public int getDirecao() {
-        return direcao;
     }
 
     public void setLinha(int linha) {
