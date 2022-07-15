@@ -179,7 +179,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
             else{
                 skooter.breakBlock();
             }
-        } else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+        } else if (e.getKeyCode() == KeyEvent.VK_ENTER && skooter.isFlagEasterEgg()  ) {
             skooter.setFlagEasterEgg(false);
             MatrizObjetos.setMatrizDeObjetos(10,0, skooter);
             MatrizObjetos.getMatrizDeObjetos()[10][0].setPosicao(10,0);

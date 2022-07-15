@@ -108,6 +108,8 @@ public class Fase3 {
                 {7,0},{7,1},{7,3},{7,4},{7,6},{7,7},{7,9},{7,10},
                 {8,0},{8,1},{8,3},{8,4},{8,6},{8,7},{8,9},{8,10},
         };
+        System.out.println(posicoesBlocosQuebraveis.length   );
+
         for (Integer[] posicoesBlocosQuebraveis : posicoesBlocosQuebraveis) {
             BlocoQuebravel blocoQuebravel = new BlocoQuebravel("blocos/blocoVerdeQuebravel.png");
             blocoQuebravel.setPosicao(posicoesBlocosQuebraveis[0], posicoesBlocosQuebraveis[1]);
