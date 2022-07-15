@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 
 public class Skooter extends Personagem implements Serializable{
-    private static Integer vidas;
+    private Integer vidas;
     private boolean flagEasterEgg;
     private static Integer pontos;
     private Integer multiplicadorDePontos;
@@ -64,14 +64,18 @@ public class Skooter extends Personagem implements Serializable{
         this.multiplicadorDePontos = multiplicadorDePontos;
     }
 
-    public static boolean removerVida(){
-        vidas-=1;
-        if(vidas >= 0){
-            ControleDeJogo.atualizarVidas(vidas);
+    public boolean removerVida(){
+        this.vidas-=1;
+        if(this.vidas >= 0){
+            ControleDeJogo.atualizarVidas(this.vidas);
             return true;
         }
-        vidas+=1;
+        this.vidas+=1;
         return false;
+    }
+
+    public void setVidas(Integer vidas) {
+        this.vidas = vidas;
     }
 
     public static void adicionarPontos(Integer novosPontos){
@@ -158,8 +162,7 @@ public class Skooter extends Personagem implements Serializable{
         }
         if (personagemDePossivelConflito instanceof Inimigo){
             SomController.tocarAudio("dano.wav");
-            MatrizObjetos.delete(this.getPosicao().getLinha(),this.getPosicao().getColuna());
-            if(Skooter.removerVida()){
+            if(this.removerVida()){
                 ControleDeJogo.reiniciarFase(this);
             }
             else{

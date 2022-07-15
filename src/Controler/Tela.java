@@ -66,7 +66,6 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
 
         TelaInicial.setMatrizParaTelaInicial();
         skooter = MatrizObjetos.getSkooter();
-        TelaInicial.getMaxScore();
     }
 
     public Graphics getGraphicsBuffer(){
@@ -173,10 +172,8 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
             MatrizObjetos.setMatrizDeObjetos(10,0, skooter);
             MatrizObjetos.getMatrizDeObjetos()[10][0].setPosicao(10,0);
         } else if (e.getKeyCode() == KeyEvent.VK_R) {
-            skooter.telaFlag = 1;
-            Fase1.setMatrizParaFase1();
+            TelaInicial.setMatrizParaTelaInicial();
             skooter = MatrizObjetos.getSkooter();
-
         }
 
         //repaint(); /*invoca o paint imediatamente, sem aguardar o refresh*/

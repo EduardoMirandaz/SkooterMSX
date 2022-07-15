@@ -104,7 +104,7 @@ public class Inimigo extends Personagem  implements Serializable {
         if(personagemDePossivelConflito instanceof Skooter){
             SomController.tocarAudio("dano.wav");
             MatrizObjetos.delete(this.getPosicao().getLinha(),this.getPosicao().getColuna());
-            if(Skooter.removerVida()){
+            if(((Skooter) personagemDePossivelConflito).removerVida()){
                 ControleDeJogo.reiniciarFase((Skooter)personagemDePossivelConflito);
             }
             else{
