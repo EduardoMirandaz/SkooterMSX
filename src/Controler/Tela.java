@@ -44,7 +44,6 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
 
     private Skooter skooter;
 
-    public static Integer telaFlag;
     private Graphics graphics_1;
 
     /**
@@ -65,11 +64,10 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
                 Consts.RESOLUCAO * Consts.CELL_SIDE + getInsets().top + getInsets().bottom);
 
 
-        telaFlag = 0;
         TelaInicial.setMatrizParaTelaInicial();
         skooter = MatrizObjetos.getSkooter();
+        TelaInicial.getMaxScore();
     }
-
 
     public Graphics getGraphicsBuffer(){
         return graphics_1;
@@ -93,19 +91,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         }
 
 
-//        for(int i = 0; i < 11; i++){
-//            System.out.println(Arrays.toString(MatrizObjetos.getMatrizDeObjetos()[i]));
-//        }
-
-
         if (!MatrizObjetos.isEmpty(MatrizObjetos.getMatrizDeObjetos())) {
-
-//            System.out.println(personagens);
-//            for(Personagem p: personagens){
-//                System.out.println(p.toString() + " -- " +p.getPosicao().getLinha() + " " + p.getPosicao().getColuna());
-//                System.out.println();
-//            }
-//            System.out.println(personagens);
             this.controleDeJogo.desenhaTudo(matrizDeObjetos);
         }
 
@@ -135,18 +121,22 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
             MatrizObjetos.getListaDePersonagens().clear();
         } else if (e.getKeyCode() == KeyEvent.VK_L) {
             try {
-                File tanque = new File("c:\\temp\\POO.zip");
+                File tanque = new File("c:\\temp\\SkooterMSX.zip");
+                if(!tanque.exists() || tanque.isDirectory()){
+                    return;
+                }
                 FileInputStream canoOut = new FileInputStream(tanque);
                 GZIPInputStream compactador = new GZIPInputStream(canoOut);
                 ObjectInputStream serializador = new ObjectInputStream(compactador);
                 MatrizObjetos.setMatrizDeObjetos((Personagem[][])serializador.readObject());
+                skooter= MatrizObjetos.getSkooter();
                 serializador.close();
             } catch (Exception ex) {
                 Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (e.getKeyCode() == KeyEvent.VK_S) {
             try {
-                File tanque = new File("c:\\temp\\POO.zip");
+                File tanque = new File("c:\\temp\\SkooterMSX.zip");
                 tanque.createNewFile();
                 FileOutputStream canoOut = new FileOutputStream(tanque);
                 GZIPOutputStream compactador = new GZIPOutputStream(canoOut);
@@ -158,22 +148,22 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
                 Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            if(telaFlag != 0 && !skooter.isFlagEasterEgg())
+            if(skooter != null && !skooter.isFlagEasterEgg())
                 skooter.moveUp();
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            if(telaFlag != 0 && !skooter.isFlagEasterEgg())
+            if(skooter != null && !skooter.isFlagEasterEgg())
                 skooter.moveDown();
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            if(telaFlag != 0 && !skooter.isFlagEasterEgg())
+            if(skooter != null && !skooter.isFlagEasterEgg())
                 skooter.moveLeft();
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if(telaFlag != 0 && !skooter.isFlagEasterEgg())
+            if(skooter != null && !skooter.isFlagEasterEgg())
                 skooter.moveRight();
         } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            if (telaFlag == 0){
+            if (skooter == null){
                 Fase1.setMatrizParaFase1();
                 skooter = MatrizObjetos.getSkooter();
-                telaFlag+=1;
+                skooter.telaFlag+=1;
             }
             else{
                 skooter.breakBlock();
@@ -183,7 +173,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
             MatrizObjetos.setMatrizDeObjetos(10,0, skooter);
             MatrizObjetos.getMatrizDeObjetos()[10][0].setPosicao(10,0);
         } else if (e.getKeyCode() == KeyEvent.VK_R) {
-            telaFlag = 1;
+            skooter.telaFlag = 1;
             Fase1.setMatrizParaFase1();
             skooter = MatrizObjetos.getSkooter();
 
@@ -215,7 +205,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("POO2015-1 - Adventures of lolo");
+        setTitle("POO 2022-1 - Skooter MSX");
         setAutoRequestFocus(false);
         setPreferredSize(new java.awt.Dimension(500, 500));
         setResizable(false);

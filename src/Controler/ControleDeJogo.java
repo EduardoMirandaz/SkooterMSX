@@ -80,13 +80,13 @@ public class ControleDeJogo {
     }
 
     public static void reiniciarFase(Skooter skooter){
-        if(Tela.telaFlag == 1){
+        if(skooter.telaFlag == 1){
             Fase1.setMatrizParaFase1(skooter);
         }
-        else if(Tela.telaFlag == 2){
+        else if(skooter.telaFlag == 2){
             Fase2.setMatrizParaFase2(skooter);
         }
-        else if(Tela.telaFlag == 3){
+        else if(skooter.telaFlag == 3){
             Fase3.setMatrizParaFase3(skooter);
         }
         else{

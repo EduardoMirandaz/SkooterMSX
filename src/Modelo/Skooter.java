@@ -16,7 +16,6 @@ import Fases.TelaFinal;
 
 import java.io.Serializable;
 
-import static Controler.Tela.telaFlag;
 
 
 public class Skooter extends Personagem implements Serializable{
@@ -24,12 +23,19 @@ public class Skooter extends Personagem implements Serializable{
     private boolean flagEasterEgg;
     private static Integer pontos;
     private Integer multiplicadorDePontos;
+    public Integer telaFlag;
+
     public Skooter(String imagemFrente, String imagemTras, String imagemDireita, String imagemEsquerda) {
         super(imagemFrente, imagemTras, imagemDireita, imagemEsquerda);
         flagEasterEgg = false;
         vidas = 3;
         pontos = 0;
         multiplicadorDePontos = 1;
+        telaFlag = 0;
+    }
+
+    public Integer getTelaFlag() {
+        return telaFlag;
     }
 
     public Integer getVidas() {
@@ -134,14 +140,14 @@ public class Skooter extends Personagem implements Serializable{
             SomController.tocarAudio("coletar.wav");
             if(this.multiplicadorDePontos == 5){
                 SomController.tocarAudio("proximaFase.wav");
-                Tela.telaFlag+=1;
-                if(Tela.telaFlag == 2){
+                this.telaFlag+=1;
+                if(this.telaFlag == 2){
                     Fase2.setMatrizParaFase2(this);
                 }
-                if(Tela.telaFlag == 3){
+                if(this.telaFlag == 3){
                     Fase3.setMatrizParaFase3(this);
                 }
-                if(Tela.telaFlag >= 4){
+                if(this.telaFlag >= 4){
                     TelaFinal.setMatrizParaTelaFinal(this);
                 }
                 // se não é a tela final, atualizo os pontos
