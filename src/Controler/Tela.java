@@ -61,8 +61,8 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
 
         this.addKeyListener(this);   /*teclado*/
         /*Cria a janela do tamanho do tabuleiro + insets (bordas) da janela*/
-        this.setSize((Consts.RESOLUCAO + Consts.LARGURA_MENU) * Consts.CELL_SIDE + getInsets().left + getInsets().right,
-                Consts.RESOLUCAO * Consts.CELL_SIDE + getInsets().top + getInsets().bottom);
+        this.setSize((Consts.RESOLUCAO + Consts.LARGURA_MENU) * Consts.TAMANHO_CELULA + getInsets().left + getInsets().right,
+                Consts.RESOLUCAO * Consts.TAMANHO_CELULA + getInsets().top + getInsets().bottom);
 
 
         ComoJogar1.setMatrizParaComoJogar1();
@@ -81,9 +81,9 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         for (int i = 0; i < Consts.RESOLUCAO; i++) {
             for (int j = 0; j < Consts.RESOLUCAO + Consts.LARGURA_MENU; j++) {
                 try {
-                    Image newImage = Toolkit.getDefaultToolkit().getImage(new java.io.File(".").getCanonicalPath() + Consts.PATH + "fundo/fundo.png");
+                    Image newImage = Toolkit.getDefaultToolkit().getImage(new java.io.File(".").getCanonicalPath() + Consts.CAMINHO_IMAGENS + "fundo/fundo.png");
                     graphics_1.drawImage(newImage,
-                            j * Consts.CELL_SIDE, i * Consts.CELL_SIDE, Consts.CELL_SIDE, Consts.CELL_SIDE, null);
+                            j * Consts.TAMANHO_CELULA, i * Consts.TAMANHO_CELULA, Consts.TAMANHO_CELULA, Consts.TAMANHO_CELULA, null);
 
                 } catch (IOException ex) {
                     Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
@@ -114,7 +114,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
             }
         };
         Timer timer = new Timer();
-        timer.schedule(task, 0, Consts.PERIOD);
+        timer.schedule(task, 0, Consts.PERIODO);
     }
 
     public void keyPressed(KeyEvent e) {
@@ -235,9 +235,6 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 
-    public void mouseMoved(MouseEvent e) {
-    }
-
     public void mouseClicked(MouseEvent e) {
     }
 
@@ -248,9 +245,6 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
     }
 
     public void mouseExited(MouseEvent e) {
-    }
-
-    public void mouseDragged(MouseEvent e) {
     }
 
     public void keyTyped(KeyEvent e) {

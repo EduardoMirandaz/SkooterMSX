@@ -7,7 +7,6 @@ public class SomController {
 
     public void AudioCore() {
         try {
-            //URL do som que no caso esta no pendrive, mais ainda é uma fase de teste.
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("sons/music.wav").getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);

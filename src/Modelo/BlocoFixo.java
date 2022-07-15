@@ -1,7 +1,5 @@
 package Modelo;
 
-import java.util.ArrayList;
-
 public class BlocoFixo extends Bloco{
 
     public static Integer posicoesBlocosFixos[][];
@@ -10,11 +8,4 @@ public class BlocoFixo extends Bloco{
         super(sNomeImagePNG);
     }
 
-    public Integer[][] getPosicoesBlocosFixos() {
-        return posicoesBlocosFixos;
-    }
-
-    public void setPosicoesBlocosFixos(Integer[][] posicoesBlocosFixos) {
-        this.posicoesBlocosFixos = posicoesBlocosFixos;
-    }
 }

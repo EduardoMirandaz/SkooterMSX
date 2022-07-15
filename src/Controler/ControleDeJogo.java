@@ -8,6 +8,8 @@ import Fases.TelaFinal;
 import Modelo.Personagem;
 import Modelo.Skooter;
 
+import java.io.*;
+
 public class ControleDeJogo {
     public void desenhaTudo(Personagem[][] matrizDePersonagens){
         for(int i = 0; i < Consts.RESOLUCAO; i++){
@@ -104,11 +106,41 @@ public class ControleDeJogo {
 
     public static Integer getMaxScore(){
         Integer valorRetornado = 0;
-
-        return valorRetornado;
+        File arquivoDeRecord = new File("src/Controler/MaxScore.txt");
+        try {
+            if(!arquivoDeRecord.exists()) {
+                arquivoDeRecord = new File("src/Controler/MaxScore.txt");
+                FileWriter myWriter = new FileWriter("src/Controler/MaxScore.txt");
+                myWriter.write("0");
+                myWriter.close();
+            }
+            BufferedReader reader = new BufferedReader(new FileReader(arquivoDeRecord));
+            String currentLine = reader.readLine().trim();
+            reader.close();
+            valorRetornado = Integer.parseInt(currentLine);
+            return valorRetornado;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return valorRetornado;
+        }
     }
+
     public static void setMaxScore(Integer valor){
         System.out.println("ESTOU SETANDO O VALOR: " + valor);
+
+
+        File arquivoDeRecord = new File("src/Controler/MaxScore.txt");
+        try {
+            FileWriter myWriter = new FileWriter("src/Controler/MaxScore.txt");
+            if(!arquivoDeRecord.exists()) {
+                arquivoDeRecord = new File("src/Controler/MaxScore.txt");
+            }
+            myWriter.write(valor.toString());
+            myWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

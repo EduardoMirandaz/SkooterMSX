@@ -1,13 +1,8 @@
 package Fases;
-
-import Auxiliar.Consts;
 import Controler.ControleDeJogo;
 import Controler.MatrizObjetos;
 import Modelo.ParteMenu;
 import Modelo.Skooter;
-
-import java.io.*;
-import java.util.Scanner;
 
 public class TelaFinal {
     public static void setMatrizParaTelaFinal(Skooter skooter) {

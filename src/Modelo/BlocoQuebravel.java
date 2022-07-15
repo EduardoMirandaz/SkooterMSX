@@ -7,11 +7,4 @@ public class BlocoQuebravel extends Bloco{
         super(sNomeImagePNG);
     }
 
-    public Integer[][] getPosicoesBlocosQuebraveis() {
-        return posicoesBlocosQuebraveis;
-    }
-
-    public void setPosicoesBlocosQuebraveis(Integer[][] posicoesBlocosQuebraveis) {
-        this.posicoesBlocosQuebraveis = posicoesBlocosQuebraveis;
-    }
 }

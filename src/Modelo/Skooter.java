@@ -9,7 +9,6 @@ import Auxiliar.Consts;
 import Controler.ControleDeJogo;
 import Controler.MatrizObjetos;
 import Controler.SomController;
-import Controler.Tela;
 import Fases.Fase2;
 import Fases.Fase3;
 import Fases.TelaFinal;

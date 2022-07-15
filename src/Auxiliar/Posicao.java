@@ -43,20 +43,20 @@ public class Posicao implements Serializable{
         this.direcao = direcao;
     }
 
-    public boolean moveUp(){
+    public boolean movimentarParaCima(){
         return this.setPosicao(this.getLinha()-1, this.getColuna());
     }
-    public boolean moveDown(){
+    public boolean movimentarParaBaixo(){
         return this.setPosicao(this.getLinha()+1, this.getColuna());
     }
-    public boolean moveRight(){
+    public boolean movimentarParaDireita(){
         return this.setPosicao(this.getLinha(), this.getColuna()+1);
     }
-    public boolean moveLeft(){
+    public boolean movimentarParaEsquerda(){
         return this.setPosicao(this.getLinha(), this.getColuna()-1);
     }
 
-    public boolean breakBlock(){
+    public boolean quebrarBloco(){
         int linhaDeletada = this.linha;
         int colunaDeletada = this.coluna;
         if(this.direcao == Consts.CIMA) linhaDeletada -= 1;

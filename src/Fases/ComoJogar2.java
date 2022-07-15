@@ -1,6 +1,4 @@
 package Fases;
-
-import Controler.ControleDeJogo;
 import Controler.MatrizObjetos;
 import Modelo.ParteMenu;
 

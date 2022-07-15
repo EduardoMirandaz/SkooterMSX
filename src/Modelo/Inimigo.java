@@ -4,9 +4,6 @@ package Modelo;
         import Controler.ControleDeJogo;
         import Controler.MatrizObjetos;
         import Controler.SomController;
-        import Controler.Tela;
-        import Fases.Fase1;
-        import Fases.Fase2;
 
         import java.io.Serializable;
         import java.util.Random;
@@ -44,8 +41,6 @@ public class Inimigo extends Personagem  implements Serializable {
         this.acumuladorDeTempo += 1;
         super.autoDesenho();
     }
-
-    //TODO interface movimentacao, para colocar os metodos dos personagens que se movem
 
     @Override
     public boolean moveUp() {

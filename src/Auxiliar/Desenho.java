@@ -20,6 +20,6 @@ public class Desenho implements Serializable {
     }
     
     public static void desenhar(ImageIcon iImage, int iColuna, int iLinha) {
-        iImage.paintIcon(jCenario,getGraphicsDaTela(),iColuna * Consts.CELL_SIDE, iLinha * Consts.CELL_SIDE);
+        iImage.paintIcon(jCenario,getGraphicsDaTela(),iColuna * Consts.TAMANHO_CELULA, iLinha * Consts.TAMANHO_CELULA);
     }
 }

@@ -1,11 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-import java.io.File;
-
-import Controler.ControleDeJogo;
 import Controler.SomController;
 import Controler.Tela;
 

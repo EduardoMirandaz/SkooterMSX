@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import Auxiliar.Consts;
@@ -34,32 +30,32 @@ public abstract class Personagem implements Serializable {
         this.bTransponivel = true;
         this.bMortal = false;
         try {
-            iFrente = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.PATH + imagemFrente);
+            iFrente = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.CAMINHO_IMAGENS + imagemFrente);
             Image imgF = iFrente.getImage();
-            BufferedImage biF = new BufferedImage(Consts.CELL_SIDE, Consts.CELL_SIDE, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage biF = new BufferedImage(Consts.TAMANHO_CELULA, Consts.TAMANHO_CELULA, BufferedImage.TYPE_INT_ARGB);
             Graphics gF = biF.createGraphics();
-            gF.drawImage(imgF, 0, 0, Consts.CELL_SIDE, Consts.CELL_SIDE, null);
+            gF.drawImage(imgF, 0, 0, Consts.TAMANHO_CELULA, Consts.TAMANHO_CELULA, null);
             iFrente = new ImageIcon(biF);
 
-            iTras = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.PATH + imagemTras);
+            iTras = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.CAMINHO_IMAGENS + imagemTras);
             Image imgT = iTras.getImage();
-            BufferedImage biT = new BufferedImage(Consts.CELL_SIDE, Consts.CELL_SIDE, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage biT = new BufferedImage(Consts.TAMANHO_CELULA, Consts.TAMANHO_CELULA, BufferedImage.TYPE_INT_ARGB);
             Graphics gT = biT.createGraphics();
-            gT.drawImage(imgT, 0, 0, Consts.CELL_SIDE, Consts.CELL_SIDE, null);
+            gT.drawImage(imgT, 0, 0, Consts.TAMANHO_CELULA, Consts.TAMANHO_CELULA, null);
             iTras = new ImageIcon(biT);
 
-            iDireita = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.PATH + imagemDireita);
+            iDireita = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.CAMINHO_IMAGENS + imagemDireita);
             Image imgD = iDireita.getImage();
-            BufferedImage biD = new BufferedImage(Consts.CELL_SIDE, Consts.CELL_SIDE, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage biD = new BufferedImage(Consts.TAMANHO_CELULA, Consts.TAMANHO_CELULA, BufferedImage.TYPE_INT_ARGB);
             Graphics gD = biD.createGraphics();
-            gD.drawImage(imgD, 0, 0, Consts.CELL_SIDE, Consts.CELL_SIDE, null);
+            gD.drawImage(imgD, 0, 0, Consts.TAMANHO_CELULA, Consts.TAMANHO_CELULA, null);
             iDireita = new ImageIcon(biD);
 
-            iEsquerda = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.PATH + imagemEsquerda);
+            iEsquerda = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.CAMINHO_IMAGENS + imagemEsquerda);
             Image imgE = iEsquerda.getImage();
-            BufferedImage biE = new BufferedImage(Consts.CELL_SIDE, Consts.CELL_SIDE, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage biE = new BufferedImage(Consts.TAMANHO_CELULA, Consts.TAMANHO_CELULA, BufferedImage.TYPE_INT_ARGB);
             Graphics gE = biE.createGraphics();
-            gE.drawImage(imgE, 0, 0, Consts.CELL_SIDE, Consts.CELL_SIDE, null);
+            gE.drawImage(imgE, 0, 0, Consts.TAMANHO_CELULA, Consts.TAMANHO_CELULA, null);
             iEsquerda = new ImageIcon(biE);
 
             iImage = iFrente;
@@ -71,11 +67,11 @@ public abstract class Personagem implements Serializable {
 
     public void setiImage(String caminho) {
         try {
-            ImageIcon imagemAux = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.PATH + caminho);
+            ImageIcon imagemAux = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.CAMINHO_IMAGENS + caminho);
             Image imgF = imagemAux.getImage();
-            BufferedImage biF = new BufferedImage(Consts.CELL_SIDE, Consts.CELL_SIDE, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage biF = new BufferedImage(Consts.TAMANHO_CELULA, Consts.TAMANHO_CELULA, BufferedImage.TYPE_INT_ARGB);
             Graphics gF = biF.createGraphics();
-            gF.drawImage(imgF, 0, 0, Consts.CELL_SIDE, Consts.CELL_SIDE, null);
+            gF.drawImage(imgF, 0, 0, Consts.TAMANHO_CELULA, Consts.TAMANHO_CELULA, null);
             this.iImage = new ImageIcon(biF);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -88,11 +84,11 @@ public abstract class Personagem implements Serializable {
         this.bTransponivel = true;
         this.bMortal = false;
         try {
-            iFrente = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.PATH + image);
+            iFrente = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.CAMINHO_IMAGENS + image);
             Image imgF = iFrente.getImage();
-            BufferedImage biF = new BufferedImage(Consts.CELL_SIDE, Consts.CELL_SIDE, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage biF = new BufferedImage(Consts.TAMANHO_CELULA, Consts.TAMANHO_CELULA, BufferedImage.TYPE_INT_ARGB);
             Graphics gF = biF.createGraphics();
-            gF.drawImage(imgF, 0, 0, Consts.CELL_SIDE, Consts.CELL_SIDE, null);
+            gF.drawImage(imgF, 0, 0, Consts.TAMANHO_CELULA, Consts.TAMANHO_CELULA, null);
             iFrente = new ImageIcon(biF);
 
             iImage = iFrente;
@@ -106,8 +102,6 @@ public abstract class Personagem implements Serializable {
     }
 
     public Posicao getPosicao() {
-        /*TODO: Retirar este método para que objetos externos nao possam operar
-         diretamente sobre a posição do Personagem*/
         return pPosicao;
     }
 
@@ -130,7 +124,7 @@ public abstract class Personagem implements Serializable {
     public boolean moveUp() {
         int linhaAtual = this.pPosicao.getLinha();
         int colunaAtual = this.pPosicao.getColuna();
-        boolean moveu = this.pPosicao.moveUp();
+        boolean moveu = this.pPosicao.movimentarParaCima();
         if(moveu){
             MatrizObjetos.setMatrizDeObjetos(linhaAtual,colunaAtual, null);
             MatrizObjetos.setMatrizDeObjetos(this.pPosicao.getLinha(),this.pPosicao.getColuna(), this);
@@ -141,7 +135,7 @@ public abstract class Personagem implements Serializable {
     public boolean moveDown() {
         int linhaAtual = this.pPosicao.getLinha();
         int colunaAtual = this.pPosicao.getColuna();
-        boolean moveu = this.pPosicao.moveDown();
+        boolean moveu = this.pPosicao.movimentarParaBaixo();
         if(moveu){
             MatrizObjetos.setMatrizDeObjetos(linhaAtual,colunaAtual, null);
             MatrizObjetos.setMatrizDeObjetos(this.pPosicao.getLinha(),this.pPosicao.getColuna(), this);
@@ -152,7 +146,7 @@ public abstract class Personagem implements Serializable {
     public boolean moveRight() {
         int linhaAtual = this.pPosicao.getLinha();
         int colunaAtual = this.pPosicao.getColuna();
-        boolean moveu = this.pPosicao.moveRight();
+        boolean moveu = this.pPosicao.movimentarParaDireita();
         if(moveu){
             MatrizObjetos.setMatrizDeObjetos(linhaAtual,colunaAtual, null);
             MatrizObjetos.setMatrizDeObjetos(this.pPosicao.getLinha(),this.pPosicao.getColuna(), this);
@@ -162,7 +156,7 @@ public abstract class Personagem implements Serializable {
     public boolean moveLeft() {
         int linhaAtual = this.pPosicao.getLinha();
         int colunaAtual = this.pPosicao.getColuna();
-        boolean moveu = this.pPosicao.moveLeft();
+        boolean moveu = this.pPosicao.movimentarParaEsquerda();
         if(moveu){
             MatrizObjetos.setMatrizDeObjetos(linhaAtual,colunaAtual, null);
             MatrizObjetos.setMatrizDeObjetos(this.pPosicao.getLinha(),this.pPosicao.getColuna(), this);
@@ -170,6 +164,6 @@ public abstract class Personagem implements Serializable {
         return moveu;    }
 
     public boolean breakBlock() {
-        return this.pPosicao.breakBlock();
+        return this.pPosicao.quebrarBloco();
     }
 }

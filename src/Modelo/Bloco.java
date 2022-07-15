@@ -1,10 +1,6 @@
 package Modelo;
 
-        import Auxiliar.Consts;
-        import Auxiliar.Desenho;
-        import Controler.Tela;
-        import java.awt.Graphics;
-        import java.io.Serializable;
+import java.io.Serializable;
 
 public abstract class Bloco extends Personagem implements Serializable {
 
