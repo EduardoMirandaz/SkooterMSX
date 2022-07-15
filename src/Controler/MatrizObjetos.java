@@ -60,7 +60,7 @@ public class MatrizObjetos {
         return false;
     }
 
-    public static boolean isEmpty(Personagem[][] p){
+    public static boolean matrizEstaVazia(Personagem[][] p){
         for (Personagem[] personagems : p) {
             for (int j = 0; j < p.length; j++) {
                 if (personagems[j] != null) {

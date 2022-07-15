@@ -92,7 +92,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
         }
 
 
-        if (!MatrizObjetos.isEmpty(MatrizObjetos.getMatrizDeObjetos())) {
+        if (!MatrizObjetos.matrizEstaVazia(MatrizObjetos.getMatrizDeObjetos())) {
             this.controleDeJogo.desenhaTudo(matrizDeObjetos);
         }
 
@@ -150,16 +150,16 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
             }
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
             if(skooter != null && !skooter.isFlagEasterEgg())
-                skooter.moveUp();
+                skooter.movimentarParaCima();
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             if(skooter != null && !skooter.isFlagEasterEgg())
-                skooter.moveDown();
+                skooter.movimentarParaBaixo();
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             if(skooter != null && !skooter.isFlagEasterEgg())
-                skooter.moveLeft();
+                skooter.movimentarParaEsquerda();
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             if(skooter != null && !skooter.isFlagEasterEgg())
-                skooter.moveRight();
+                skooter.movimentarParaDireita();
         } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             if (skooter == null){
                 if(telasIniciais == 0){
@@ -179,7 +179,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
             else{
                 skooter.breakBlock();
             }
-        } else if (e.getKeyCode() == KeyEvent.VK_ENTER && skooter.isFlagEasterEgg()  ) {
+        } else if (e.getKeyCode() == KeyEvent.VK_ENTER && skooter.isFlagEasterEgg()) {
             skooter.setFlagEasterEgg(false);
             MatrizObjetos.setMatrizDeObjetos(10,0, skooter);
             MatrizObjetos.getMatrizDeObjetos()[10][0].setPosicao(10,0);

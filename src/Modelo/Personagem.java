@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
 
-
-
 public abstract class Personagem implements Serializable {
 
     protected ImageIcon iImage;
@@ -21,14 +19,10 @@ public abstract class Personagem implements Serializable {
     protected ImageIcon iDireita;
     protected ImageIcon iEsquerda;
     protected Posicao pPosicao;
-    protected boolean bTransponivel; /*Pode passar por cima?*/
-    protected boolean bMortal;       /*Se encostar, o Bomberman morre?*/
 
 
     protected Personagem(String imagemFrente, String imagemTras, String imagemDireita, String imagemEsquerda) {
         this.pPosicao = new Posicao(0, 0);
-        this.bTransponivel = true;
-        this.bMortal = false;
         try {
             iFrente = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.CAMINHO_IMAGENS + imagemFrente);
             Image imgF = iFrente.getImage();
@@ -81,8 +75,6 @@ public abstract class Personagem implements Serializable {
 
     protected Personagem(String image) {
         this.pPosicao = new Posicao(0, 0);
-        this.bTransponivel = true;
-        this.bMortal = false;
         try {
             iFrente = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.CAMINHO_IMAGENS + image);
             Image imgF = iFrente.getImage();
@@ -105,14 +97,6 @@ public abstract class Personagem implements Serializable {
         return pPosicao;
     }
 
-    public boolean isbTransponivel() {
-        return bTransponivel;
-    }
-
-    public void setbTransponivel(boolean bTransponivel) {
-        this.bTransponivel = bTransponivel;
-    }
-
     public void autoDesenho(){
         Desenho.desenhar(this.iImage, pPosicao.getColuna(), pPosicao.getLinha());        
     }
@@ -121,7 +105,7 @@ public abstract class Personagem implements Serializable {
         return pPosicao.setPosicao(linha, coluna);
     }
 
-    public boolean moveUp() {
+    public boolean movimentarParaCima() {
         int linhaAtual = this.pPosicao.getLinha();
         int colunaAtual = this.pPosicao.getColuna();
         boolean moveu = this.pPosicao.movimentarParaCima();
@@ -132,7 +116,7 @@ public abstract class Personagem implements Serializable {
         return moveu;
     }
 
-    public boolean moveDown() {
+    public boolean movimentarParaBaixo() {
         int linhaAtual = this.pPosicao.getLinha();
         int colunaAtual = this.pPosicao.getColuna();
         boolean moveu = this.pPosicao.movimentarParaBaixo();
@@ -143,7 +127,7 @@ public abstract class Personagem implements Serializable {
         return moveu;
     }
 
-    public boolean moveRight() {
+    public boolean movimentarParaDireita() {
         int linhaAtual = this.pPosicao.getLinha();
         int colunaAtual = this.pPosicao.getColuna();
         boolean moveu = this.pPosicao.movimentarParaDireita();
@@ -153,7 +137,7 @@ public abstract class Personagem implements Serializable {
         }
         return moveu;    }
 
-    public boolean moveLeft() {
+    public boolean movimentarParaEsquerda() {
         int linhaAtual = this.pPosicao.getLinha();
         int colunaAtual = this.pPosicao.getColuna();
         boolean moveu = this.pPosicao.movimentarParaEsquerda();

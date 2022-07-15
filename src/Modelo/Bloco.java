@@ -6,7 +6,6 @@ public abstract class Bloco extends Personagem implements Serializable {
 
     public Bloco(String sNomeImagePNG) {
         super(sNomeImagePNG);
-        this.bTransponivel = false;
     }
 
     public void autoDesenho() {

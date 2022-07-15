@@ -25,16 +25,16 @@ public class Inimigo extends Personagem  implements Serializable {
             Random r = new Random();
             int valorAleatorio = r.nextInt(4);
             if(valorAleatorio == 0){
-                this.moveUp();
+                this.movimentarParaCima();
             }
             else if(valorAleatorio == 1){
-                this.moveRight();
+                this.movimentarParaDireita();
             }
             else if(valorAleatorio == 2){
-                this.moveDown();
+                this.movimentarParaBaixo();
             }
             else if(valorAleatorio == 3){
-                this.moveLeft();
+                this.movimentarParaEsquerda();
             }
             this.acumuladorDeTempo = 0;
         }
@@ -43,48 +43,48 @@ public class Inimigo extends Personagem  implements Serializable {
     }
 
     @Override
-    public boolean moveUp() {
+    public boolean movimentarParaCima() {
         this.iImage = this.iTras;
         this.getPosicao().setDirecao(Consts.CIMA);
-        int indexLinha = this.getPosicao().getLinha()-1;
-        if(indexLinha < 0) return false;
+        int indiceLinha = this.getPosicao().getLinha()-1;
+        if(indiceLinha < 0) return false;
         return verificarProximoPasso(
-                MatrizObjetos.getMatrizDeObjetos()[indexLinha][this.getPosicao().getColuna()],
+                MatrizObjetos.getMatrizDeObjetos()[indiceLinha][this.getPosicao().getColuna()],
                 Consts.CIMA
         );
     }
 
     @Override
-    public boolean moveRight() {
+    public boolean movimentarParaDireita() {
         this.iImage = this.iDireita;
         this.getPosicao().setDirecao(Consts.DIREITA);
-        int indexColuna = this.getPosicao().getColuna()+1;
-        if(indexColuna >= Consts.RESOLUCAO) return false;
+        int jindiceColuna = this.getPosicao().getColuna()+1;
+        if(jindiceColuna >= Consts.RESOLUCAO) return false;
         return verificarProximoPasso(
-                MatrizObjetos.getMatrizDeObjetos()[this.getPosicao().getLinha()][indexColuna],
+                MatrizObjetos.getMatrizDeObjetos()[this.getPosicao().getLinha()][jindiceColuna],
                 Consts.DIREITA
         );
     }
     @Override
-    public boolean moveDown() {
+    public boolean movimentarParaBaixo() {
         this.iImage = this.iFrente;
         this.getPosicao().setDirecao(Consts.BAIXO);
-        int indexLinha = this.getPosicao().getLinha()+1;
-        if(indexLinha >= Consts.RESOLUCAO) return false;
+        int indiceLinha = this.getPosicao().getLinha()+1;
+        if(indiceLinha >= Consts.RESOLUCAO) return false;
         return verificarProximoPasso(
-                MatrizObjetos.getMatrizDeObjetos()[indexLinha][this.getPosicao().getColuna()],
+                MatrizObjetos.getMatrizDeObjetos()[indiceLinha][this.getPosicao().getColuna()],
                 Consts.BAIXO
         );
     }
 
     @Override
-    public boolean moveLeft() {
+    public boolean movimentarParaEsquerda() {
         this.iImage = this.iEsquerda;
         this.getPosicao().setDirecao(Consts.ESQUERDA);
-        int indexColuna = this.getPosicao().getColuna()-1;
-        if(indexColuna < 0) return false;
+        int jindiceColuna = this.getPosicao().getColuna()-1;
+        if(jindiceColuna < 0) return false;
         return verificarProximoPasso(
-                MatrizObjetos.getMatrizDeObjetos()[this.getPosicao().getLinha()][indexColuna],
+                MatrizObjetos.getMatrizDeObjetos()[this.getPosicao().getLinha()][jindiceColuna],
                 Consts.ESQUERDA
         );
     }
@@ -110,10 +110,10 @@ public class Inimigo extends Personagem  implements Serializable {
 
         }
         switch (direcao){
-            case Consts.CIMA -> {return super.moveUp();}
-            case Consts.DIREITA -> {return super.moveRight();}
-            case Consts.BAIXO -> {return super.moveDown();}
-            case Consts.ESQUERDA -> {return super.moveLeft();}
+            case Consts.CIMA -> {return super.movimentarParaCima();}
+            case Consts.DIREITA -> {return super.movimentarParaDireita();}
+            case Consts.BAIXO -> {return super.movimentarParaBaixo();}
+            case Consts.ESQUERDA -> {return super.movimentarParaEsquerda();}
             default -> {return false;}
         }
     }

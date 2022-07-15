@@ -22,7 +22,7 @@ public class Fase1 {
 
         MatrizObjetos.setMatrizDeObjetos(0,4, skooter);
         MatrizObjetos.getMatrizDeObjetos()[0][4].setPosicao(0,4);
-        skooter.setMultiplicadorDePontos(1);
+        skooter.setMultiplicador(1);
 
 
         String imagensIniciaisMenu[][] = {

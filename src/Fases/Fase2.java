@@ -14,7 +14,7 @@ public class Fase2 {
         MatrizObjetos.apagarObjetos();
 
 
-        skooter.setMultiplicadorDePontos(1);
+        skooter.setMultiplicador(1);
         MatrizObjetos.setMatrizDeObjetos(0,5, skooter);
         MatrizObjetos.getMatrizDeObjetos()[0][5].setPosicao(0,5);
 

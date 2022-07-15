@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Modelo;
 
 import Auxiliar.Consts;
@@ -33,10 +28,6 @@ public class Skooter extends Personagem implements Serializable{
         telaFlag = 0;
     }
 
-    public Integer getTelaFlag() {
-        return telaFlag;
-    }
-
     public Integer getVidas() {
         return vidas;
     }
@@ -53,13 +44,7 @@ public class Skooter extends Personagem implements Serializable{
         return flagEasterEgg;
     }
 
-    public Integer getMultiplicadorDePontos() {
-        return multiplicadorDePontos;
-    }
-
-
-
-    public void setMultiplicadorDePontos(Integer multiplicadorDePontos) {
+    public void setMultiplicador(Integer multiplicadorDePontos) {
         this.multiplicadorDePontos = multiplicadorDePontos;
     }
 
@@ -73,10 +58,6 @@ public class Skooter extends Personagem implements Serializable{
         return false;
     }
 
-    public void setVidas(Integer vidas) {
-        this.vidas = vidas;
-    }
-
     public static void adicionarPontos(Integer novosPontos){
         pontos += novosPontos;
         ControleDeJogo.atualizarPlacar(pontos);
@@ -86,48 +67,48 @@ public class Skooter extends Personagem implements Serializable{
         super(imagem);
     }
     @Override
-    public boolean moveUp() {
+    public boolean movimentarParaCima() {
         this.iImage = this.iTras;
         this.getPosicao().setDirecao(Consts.CIMA);
-        int indexLinha = this.getPosicao().getLinha()-1;
-        if(indexLinha < 0) return false;
+        int indiceLinha = this.getPosicao().getLinha()-1;
+        if(indiceLinha < 0) return false;
         return verificarProximoPasso(
-                MatrizObjetos.getMatrizDeObjetos()[indexLinha][this.getPosicao().getColuna()],
+                MatrizObjetos.getMatrizDeObjetos()[indiceLinha][this.getPosicao().getColuna()],
                 Consts.CIMA
         );
     }
 
     @Override
-    public boolean moveRight() {
+    public boolean movimentarParaDireita() {
         this.iImage = this.iDireita;
         this.getPosicao().setDirecao(Consts.DIREITA);
-        int indexColuna = this.getPosicao().getColuna()+1;
-        if(indexColuna >= Consts.RESOLUCAO) return false;
+        int indiceColuna = this.getPosicao().getColuna()+1;
+        if(indiceColuna >= Consts.RESOLUCAO) return false;
         return verificarProximoPasso(
-                MatrizObjetos.getMatrizDeObjetos()[this.getPosicao().getLinha()][indexColuna],
+                MatrizObjetos.getMatrizDeObjetos()[this.getPosicao().getLinha()][indiceColuna],
                 Consts.DIREITA
         );
     }
     @Override
-    public boolean moveDown() {
+    public boolean movimentarParaBaixo() {
         this.iImage = this.iFrente;
         this.getPosicao().setDirecao(Consts.BAIXO);
-        int indexLinha = this.getPosicao().getLinha()+1;
-        if(indexLinha >= Consts.RESOLUCAO) return false;
+        int indiceLinha = this.getPosicao().getLinha()+1;
+        if(indiceLinha >= Consts.RESOLUCAO) return false;
         return verificarProximoPasso(
-                MatrizObjetos.getMatrizDeObjetos()[indexLinha][this.getPosicao().getColuna()],
+                MatrizObjetos.getMatrizDeObjetos()[indiceLinha][this.getPosicao().getColuna()],
                 Consts.BAIXO
         );
     }
 
     @Override
-    public boolean moveLeft() {
+    public boolean movimentarParaEsquerda() {
         this.iImage = this.iEsquerda;
         this.getPosicao().setDirecao(Consts.ESQUERDA);
-        int indexColuna = this.getPosicao().getColuna()-1;
-        if(indexColuna < 0) return false;
+        int indiceColuna = this.getPosicao().getColuna()-1;
+        if(indiceColuna < 0) return false;
         return verificarProximoPasso(
-                MatrizObjetos.getMatrizDeObjetos()[this.getPosicao().getLinha()][indexColuna],
+                MatrizObjetos.getMatrizDeObjetos()[this.getPosicao().getLinha()][indiceColuna],
                 Consts.ESQUERDA
         );
     }
@@ -137,7 +118,7 @@ public class Skooter extends Personagem implements Serializable{
             return false;
         if (personagemDePossivelConflito instanceof Coletavel){
             Skooter.adicionarPontos(((Coletavel) personagemDePossivelConflito).getValorEmPontos() * this.multiplicadorDePontos);
-            Integer indexColetavel = ((Coletavel) personagemDePossivelConflito).getIndexMenu();
+            Integer indexColetavel = ((Coletavel) personagemDePossivelConflito).getIndiceMenu();
             MatrizObjetos.getMatrizDeObjetos()[6+indexColetavel][13].setiImage("menu/menuX"+multiplicadorDePontos+".png");
             this.multiplicadorDePontos += 1;
             SomController.tocarAudio("coletar.wav");
@@ -175,10 +156,10 @@ public class Skooter extends Personagem implements Serializable{
 
 
         switch (direcao){
-            case Consts.CIMA -> {return super.moveUp();}
-            case Consts.DIREITA -> {return super.moveRight();}
-            case Consts.BAIXO -> {return super.moveDown();}
-            case Consts.ESQUERDA -> {return super.moveLeft();}
+            case Consts.CIMA -> {return super.movimentarParaCima();}
+            case Consts.DIREITA -> {return super.movimentarParaDireita();}
+            case Consts.BAIXO -> {return super.movimentarParaBaixo();}
+            case Consts.ESQUERDA -> {return super.movimentarParaEsquerda();}
             default -> {return false;}
         }
     }

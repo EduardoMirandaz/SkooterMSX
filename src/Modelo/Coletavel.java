@@ -4,12 +4,12 @@ package Modelo;
 public class Coletavel extends Personagem  implements Serializable {
 
     private Integer valorEmPontos;
-    private Integer indexMenu;
+    private Integer indiceMenu;
 
-    public Coletavel(String imagem, Integer indexMenu) {
+    public Coletavel(String imagem, Integer indeceMenu) {
         super(imagem);
-        this.indexMenu = indexMenu;
-        switch (indexMenu){
+        this.indiceMenu = indeceMenu;
+        switch (indeceMenu){
             case 1 -> valorEmPontos = 10;
             case 2 -> valorEmPontos = 15;
             case 3 -> valorEmPontos = 20;
@@ -26,7 +26,7 @@ public class Coletavel extends Personagem  implements Serializable {
         return valorEmPontos;
     }
 
-    public Integer getIndexMenu() {
-        return indexMenu;
+    public Integer getIndiceMenu() {
+        return indiceMenu;
     }
 }
