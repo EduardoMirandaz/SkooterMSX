@@ -1,1 +1,4 @@
 .idea
+*.class
+*.zip
+src/Controler/MaxScore.txt
