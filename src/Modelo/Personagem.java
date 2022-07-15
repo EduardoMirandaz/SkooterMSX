@@ -147,7 +147,7 @@ public abstract class Personagem implements Serializable {
         }
         return moveu;    }
 
-    public boolean breakBlock() {
+    public boolean quebrarBloco() {
         return this.pPosicao.quebrarBloco();
     }
 }

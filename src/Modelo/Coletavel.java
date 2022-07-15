@@ -13,7 +13,7 @@ public class Coletavel extends Personagem  implements Serializable {
             case 1 -> valorEmPontos = 10;
             case 2 -> valorEmPontos = 15;
             case 3 -> valorEmPontos = 20;
-            case 4 -> valorEmPontos = 25 ;
+            case 4 -> valorEmPontos = 25;
             default -> valorEmPontos = 0;
         }
     }

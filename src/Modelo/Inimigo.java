@@ -9,7 +9,6 @@ package Modelo;
         import java.util.Random;
 
 public class Inimigo extends Personagem  implements Serializable {
-    private boolean bRight;
 
     //Acumulador que fará o inimigo se movimentar mais lentamente a cada periodo e meio
     private int acumuladorDeTempo;
