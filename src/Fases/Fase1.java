@@ -1,6 +1,7 @@
 package Fases;
 
 import Auxiliar.Consts;
+import Controler.ControleDeJogo;
 import Controler.MatrizObjetos;
 import Modelo.*;
 
@@ -19,9 +20,9 @@ public class Fase1 {
 
 
 
-        MatrizObjetos.setMatrizDeObjetos(0,7, skooter);
-        MatrizObjetos.getMatrizDeObjetos()[0][7].setPosicao(0,7);
-
+        MatrizObjetos.setMatrizDeObjetos(0,4, skooter);
+        MatrizObjetos.getMatrizDeObjetos()[0][4].setPosicao(0,4);
+        skooter.setMultiplicadorDePontos(1);
 
 
         String imagensIniciaisMenu[][] = {
@@ -32,10 +33,10 @@ public class Fase1 {
                 {"menu/menuFase1.png","menu/menuFase2.png","menu/menuFase3.png","menu/menuFase4.png"},
                 {"menu/menuEmpty.png","menu/menuEmpty.png","menu/menuNum0.png","menu/menuNum1.png"},
                 {"menu/menuEmpty.png","menu/menuEmpty.png","menu/menuEmpty.png","menu/menuEmpty.png"},
-                {"menu/menuEmpty.png", "menu/menu100.png", "menu/menuEmpty.png", "menu/menuColetavel1.png"},
-                {"menu/menuEmpty.png", "menu/menu150.png", "menu/menuEmpty.png", "menu/menuColetavel2.png"},
-                {"menu/menuEmpty.png", "menu/menu200.png", "menu/menuEmpty.png", "menu/menuColetavel3.png"},
-                {"menu/menuEmpty.png", "menu/menu250.png", "menu/menuEmpty.png", "menu/menuColetavel4.png"}
+                {"menu/menuEmpty.png", "menu/menu10.png", "menu/menuEmpty.png", "menu/menuColetavel1.png"},
+                {"menu/menuEmpty.png", "menu/menu15.png", "menu/menuEmpty.png", "menu/menuColetavel2.png"},
+                {"menu/menuEmpty.png", "menu/menu20.png", "menu/menuEmpty.png", "menu/menuColetavel3.png"},
+                {"menu/menuEmpty.png", "menu/menu25.png", "menu/menuEmpty.png", "menu/menuColetavel4.png"}
         };
         for(int i = 0; i < Consts.RESOLUCAO; i++){
             for(int j = 0; j < Consts.LARGURA_MENU; j++){
@@ -44,7 +45,8 @@ public class Fase1 {
             }
         }
 
-
+        ControleDeJogo.atualizarPlacar(skooter.getPontos());
+        ControleDeJogo.atualizarVidas(skooter.getVidas());
 
         Inimigo inimigoAmarelo = new Inimigo("inimigos/inimigoAmareloFrente.png","inimigos/inimigoAmareloTras.png","inimigos/inimigoAmareloDireita.png","inimigos/inimigoAmareloEsquerda.png");
         inimigoAmarelo.setPosicao(1, 0);

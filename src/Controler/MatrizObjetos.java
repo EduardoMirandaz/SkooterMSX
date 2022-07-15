@@ -56,6 +56,7 @@ public class MatrizObjetos {
         if(matrizDeObjetos[linha][coluna] instanceof BlocoQuebravel){
             Desenho.getCenario().removePersonagem(matrizDeObjetos[linha][coluna]);
             setMatrizDeObjetos(linha,coluna,null);
+            Skooter.adicionarPontos(1);
             return true;
         }
 

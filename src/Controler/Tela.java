@@ -44,7 +44,7 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
 
     private Skooter skooter;
 
-    public Integer telaFlag;
+    public static Integer telaFlag;
     private Graphics graphics_1;
 
     /**
@@ -158,16 +158,16 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
                 Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            if(telaFlag != 0)
+            if(telaFlag != 0 && !skooter.isFlagEasterEgg())
                 skooter.moveUp();
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            if(telaFlag != 0)
+            if(telaFlag != 0 && !skooter.isFlagEasterEgg())
                 skooter.moveDown();
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            if(telaFlag != 0)
+            if(telaFlag != 0 && !skooter.isFlagEasterEgg())
                 skooter.moveLeft();
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if(telaFlag != 0)
+            if(telaFlag != 0 && !skooter.isFlagEasterEgg())
                 skooter.moveRight();
         } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             if (telaFlag == 0){
@@ -179,16 +179,14 @@ public class Tela extends javax.swing.JFrame implements MouseListener, KeyListen
                 skooter.breakBlock();
             }
         } else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            telaFlag+=1;
-            if(telaFlag == 2){
-                Fase2.setMatrizParaFase2(skooter);
-            }
-            if(telaFlag == 3){
-                Fase3.setMatrizParaFase3(skooter);
-            }
-            if(telaFlag >= 4){
-                TelaFinal.setMatrizParaTelaFinal(skooter);
-            }
+            skooter.setFlagEasterEgg(false);
+            MatrizObjetos.setMatrizDeObjetos(10,0, skooter);
+            MatrizObjetos.getMatrizDeObjetos()[10][0].setPosicao(10,0);
+        } else if (e.getKeyCode() == KeyEvent.VK_R) {
+            telaFlag = 1;
+            Fase1.setMatrizParaFase1();
+            skooter = MatrizObjetos.getSkooter();
+
         }
 
         //repaint(); /*invoca o paint imediatamente, sem aguardar o refresh*/

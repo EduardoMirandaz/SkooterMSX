@@ -1,7 +1,12 @@
 package Modelo;
 
         import Auxiliar.Consts;
+        import Controler.ControleDeJogo;
         import Controler.MatrizObjetos;
+        import Controler.SomController;
+        import Controler.Tela;
+        import Fases.Fase1;
+        import Fases.Fase2;
 
         import java.io.Serializable;
         import java.util.Random;
@@ -97,6 +102,15 @@ public class Inimigo extends Personagem  implements Serializable {
         if(personagemDePossivelConflito instanceof Inimigo)
             return false;
         if(personagemDePossivelConflito instanceof Skooter){
+            SomController.tocarAudio("dano.wav");
+            MatrizObjetos.delete(this.getPosicao().getLinha(),this.getPosicao().getColuna());
+            if(Skooter.removerVida()){
+                ControleDeJogo.reiniciarFase((Skooter)personagemDePossivelConflito);
+            }
+            else{
+                ControleDeJogo.gameOver((Skooter)personagemDePossivelConflito);
+            }
+            return false;
 
         }
         switch (direcao){

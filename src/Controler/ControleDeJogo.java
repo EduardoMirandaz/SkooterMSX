@@ -7,6 +7,10 @@
 package Controler;
 
 import Auxiliar.Consts;
+import Fases.Fase1;
+import Fases.Fase2;
+import Fases.Fase3;
+import Fases.TelaFinal;
 import Modelo.Personagem;
 import Modelo.Skooter;
 import Auxiliar.Posicao;
@@ -56,13 +60,43 @@ public class ControleDeJogo {
         System.out.println();
         char sPontos[] = ("000"+ pontos.toString()).toCharArray();
 
-        MatrizObjetos.getMatrizDeObjetos()[5][12]
+        MatrizObjetos.getMatrizDeObjetos()[4][12]
                 .setiImage("menu/menuNum"+sPontos[sPontos.length - 1]+".png");
-        MatrizObjetos.getMatrizDeObjetos()[5][11]
+        MatrizObjetos.getMatrizDeObjetos()[4][11]
                 .setiImage("menu/menuNum"+sPontos[sPontos.length - 2]+".png");
-        MatrizObjetos.getMatrizDeObjetos()[5][10]
+        MatrizObjetos.getMatrizDeObjetos()[4][10]
                 .setiImage("menu/menuNum"+sPontos[sPontos.length - 3]+".png");
-        MatrizObjetos.getMatrizDeObjetos()[5][9]
+        MatrizObjetos.getMatrizDeObjetos()[4][9]
                 .setiImage("menu/menuNum"+sPontos[sPontos.length - 4]+".png");
     }
+
+
+    public static void atualizarVidas(Integer vidas){
+        char[] sVidas = ("0"+ vidas.toString()).toCharArray();
+        MatrizObjetos.getMatrizDeObjetos()[3][14]
+                .setiImage("menu/menuNum"+sVidas[sVidas.length - 1]+".png");
+        MatrizObjetos.getMatrizDeObjetos()[3][13]
+                .setiImage("menu/menuNum"+sVidas[sVidas.length - 2]+".png");
+    }
+
+    public static void reiniciarFase(Skooter skooter){
+        if(Tela.telaFlag == 1){
+            Fase1.setMatrizParaFase1(skooter);
+        }
+        else if(Tela.telaFlag == 2){
+            Fase2.setMatrizParaFase2(skooter);
+        }
+        else if(Tela.telaFlag == 3){
+            Fase3.setMatrizParaFase3(skooter);
+        }
+        else{
+            TelaFinal.setMatrizParaTelaFinal(skooter);
+        }
+    }
+
+    public static void gameOver(Skooter skooter){
+        TelaFinal.setMatrizParaTelaFinal(skooter);
+    }
+
+
 }

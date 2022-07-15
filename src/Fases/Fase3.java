@@ -16,7 +16,7 @@ public class Fase3 {
 
         skooter.setMultiplicadorDePontos(1);
         MatrizObjetos.setMatrizDeObjetos(10,0, skooter);
-            MatrizObjetos.getMatrizDeObjetos()[10][0].setPosicao(10,0);
+        MatrizObjetos.getMatrizDeObjetos()[10][0].setPosicao(10,0);
 
 
 
@@ -28,10 +28,10 @@ public class Fase3 {
                 {"menu/menuFase1.png","menu/menuFase2.png","menu/menuFase3.png","menu/menuFase4.png"},
                 {"menu/menuEmpty.png","menu/menuEmpty.png","menu/menuNum0.png","menu/menuNum1.png"},
                 {"menu/menuEmpty.png","menu/menuEmpty.png","menu/menuEmpty.png","menu/menuEmpty.png"},
-                {"menu/menuEmpty.png", "menu/menu100.png", "menu/menuEmpty.png", "menu/menuColetavel1.png"},
-                {"menu/menuEmpty.png", "menu/menu150.png", "menu/menuEmpty.png", "menu/menuColetavel2.png"},
-                {"menu/menuEmpty.png", "menu/menu200.png", "menu/menuEmpty.png", "menu/menuColetavel3.png"},
-                {"menu/menuEmpty.png", "menu/menu250.png", "menu/menuEmpty.png", "menu/menuColetavel4.png"}
+                {"menu/menuEmpty.png", "menu/menu10.png", "menu/menuEmpty.png", "menu/menuColetavel1.png"},
+                {"menu/menuEmpty.png", "menu/menu15.png", "menu/menuEmpty.png", "menu/menuColetavel2.png"},
+                {"menu/menuEmpty.png", "menu/menu20.png", "menu/menuEmpty.png", "menu/menuColetavel3.png"},
+                {"menu/menuEmpty.png", "menu/menu25.png", "menu/menuEmpty.png", "menu/menuColetavel4.png"}
         };
 
 
@@ -43,7 +43,7 @@ public class Fase3 {
         }
 
         ControleDeJogo.atualizarPlacar(skooter.getPontos());
-
+        ControleDeJogo.atualizarVidas(skooter.getVidas());
 
         Inimigo inimigoAmarelo = new Inimigo("inimigos/inimigoAmareloFrente.png","inimigos/inimigoAmareloTras.png","inimigos/inimigoAmareloDireita.png","inimigos/inimigoAmareloEsquerda.png");
         inimigoAmarelo.setPosicao(0, 4);

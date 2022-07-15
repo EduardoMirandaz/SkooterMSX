@@ -8,16 +8,25 @@ package Modelo;
 import Auxiliar.Consts;
 import Controler.ControleDeJogo;
 import Controler.MatrizObjetos;
+import Controler.SomController;
+import Controler.Tela;
+import Fases.Fase2;
+import Fases.Fase3;
+import Fases.TelaFinal;
 
 import java.io.Serializable;
 
+import static Controler.Tela.telaFlag;
+
 
 public class Skooter extends Personagem implements Serializable{
-    private Integer vidas;
-    private Integer pontos;
+    private static Integer vidas;
+    private boolean flagEasterEgg;
+    private static Integer pontos;
     private Integer multiplicadorDePontos;
     public Skooter(String imagemFrente, String imagemTras, String imagemDireita, String imagemEsquerda) {
         super(imagemFrente, imagemTras, imagemDireita, imagemEsquerda);
+        flagEasterEgg = false;
         vidas = 3;
         pontos = 0;
         multiplicadorDePontos = 1;
@@ -31,6 +40,14 @@ public class Skooter extends Personagem implements Serializable{
         return pontos;
     }
 
+    public void setFlagEasterEgg(boolean flagEasterEgg) {
+        this.flagEasterEgg = flagEasterEgg;
+    }
+
+    public boolean isFlagEasterEgg() {
+        return flagEasterEgg;
+    }
+
     public Integer getMultiplicadorDePontos() {
         return multiplicadorDePontos;
     }
@@ -39,6 +56,21 @@ public class Skooter extends Personagem implements Serializable{
 
     public void setMultiplicadorDePontos(Integer multiplicadorDePontos) {
         this.multiplicadorDePontos = multiplicadorDePontos;
+    }
+
+    public static boolean removerVida(){
+        vidas-=1;
+        if(vidas >= 0){
+            ControleDeJogo.atualizarVidas(vidas);
+            return true;
+        }
+        vidas+=1;
+        return false;
+    }
+
+    public static void adicionarPontos(Integer novosPontos){
+        pontos += novosPontos;
+        ControleDeJogo.atualizarPlacar(pontos);
     }
 
     public Skooter(String imagem) {
@@ -95,12 +127,42 @@ public class Skooter extends Personagem implements Serializable{
         if (personagemDePossivelConflito instanceof Bloco)
             return false;
         if (personagemDePossivelConflito instanceof Coletavel){
-            this.pontos += ((Coletavel) personagemDePossivelConflito).getValorEmPontos() * this.multiplicadorDePontos;
+            Skooter.adicionarPontos(((Coletavel) personagemDePossivelConflito).getValorEmPontos() * this.multiplicadorDePontos);
             Integer indexColetavel = ((Coletavel) personagemDePossivelConflito).getIndexMenu();
             MatrizObjetos.getMatrizDeObjetos()[6+indexColetavel][13].setiImage("menu/menuX"+multiplicadorDePontos+".png");
             this.multiplicadorDePontos += 1;
-            ControleDeJogo.atualizarPlacar(pontos);
+            SomController.tocarAudio("coletar.wav");
+            if(this.multiplicadorDePontos == 5){
+                SomController.tocarAudio("proximaFase.wav");
+                Tela.telaFlag+=1;
+                if(Tela.telaFlag == 2){
+                    Fase2.setMatrizParaFase2(this);
+                }
+                if(Tela.telaFlag == 3){
+                    Fase3.setMatrizParaFase3(this);
+                }
+                if(Tela.telaFlag >= 4){
+                    TelaFinal.setMatrizParaTelaFinal(this);
+                }
+                // se não é a tela final, atualizo os pontos
+                else{
+                    ControleDeJogo.atualizarPlacar(pontos);
+                }
+            }
         }
+        if (personagemDePossivelConflito instanceof Inimigo){
+            SomController.tocarAudio("dano.wav");
+            MatrizObjetos.delete(this.getPosicao().getLinha(),this.getPosicao().getColuna());
+            if(Skooter.removerVida()){
+                ControleDeJogo.reiniciarFase(this);
+            }
+            else{
+                ControleDeJogo.gameOver(this);
+            }
+            return false;
+
+        }
+
 
 
         switch (direcao){

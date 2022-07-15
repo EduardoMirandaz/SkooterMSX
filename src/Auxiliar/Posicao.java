@@ -5,6 +5,7 @@ import Controler.MatrizObjetos;
 import java.io.Serializable;
 import Auxiliar.Consts;
 import Modelo.ParteMenu;
+import Modelo.Skooter;
 
 public class Posicao implements Serializable{
     private int	linha;
@@ -72,6 +73,7 @@ public class Posicao implements Serializable{
         if(this.direcao == Consts.BAIXO) linhaDeletada += 1;
         if(this.direcao == Consts.DIREITA) colunaDeletada += 1;
         if(this.direcao == Consts.ESQUERDA) colunaDeletada -= 1;
+
         return MatrizObjetos.delete(linhaDeletada,colunaDeletada);
     }
 

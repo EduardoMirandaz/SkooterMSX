@@ -8,6 +8,7 @@ import Modelo.Skooter;
 
 public class TelaFinal {
     public static void setMatrizParaTelaFinal(Skooter skooter) {
+        skooter.setFlagEasterEgg(true);
         for(int i = 10; i >= 0; i--){
             for(int j = 14; j >= 0; j--){
                 MatrizObjetos.setMatrizDeObjetos(10-i,14-j, new ParteMenu("creditos/"+((15*i+j)+1)+".png"));
@@ -15,6 +16,8 @@ public class TelaFinal {
             }
         }
         ControleDeJogo.mostrarPontuacaoFinal(skooter.getPontos());
+
+
     }
 
 }
