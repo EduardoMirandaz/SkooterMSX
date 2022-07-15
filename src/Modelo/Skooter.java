@@ -157,6 +157,7 @@ public class Skooter extends Personagem implements Serializable{
                 ControleDeJogo.reiniciarFase(this);
             }
             else{
+                SomController.tocarAudio("gameOver.wav");
                 ControleDeJogo.gameOver(this);
             }
             return false;

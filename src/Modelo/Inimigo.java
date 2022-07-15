@@ -108,6 +108,7 @@ public class Inimigo extends Personagem  implements Serializable {
                 ControleDeJogo.reiniciarFase((Skooter)personagemDePossivelConflito);
             }
             else{
+                SomController.tocarAudio("gameOver.wav");
                 ControleDeJogo.gameOver((Skooter)personagemDePossivelConflito);
             }
             return false;
