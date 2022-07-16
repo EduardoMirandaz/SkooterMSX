@@ -9,12 +9,21 @@ public class Coletavel extends Personagem  implements Serializable {
     public Coletavel(String imagem, Integer indeceMenu) {
         super(imagem);
         this.indiceMenu = indeceMenu;
-        switch (indeceMenu){
-            case 1 -> valorEmPontos = 10;
-            case 2 -> valorEmPontos = 15;
-            case 3 -> valorEmPontos = 20;
-            case 4 -> valorEmPontos = 25;
-            default -> valorEmPontos = 0;
+        switch (indeceMenu) {
+            case 1:
+                this.valorEmPontos = 10;
+                break;
+            case 2:
+                this.valorEmPontos = 15;
+                break;
+            case 3:
+                this.valorEmPontos = 20;
+                break;
+            case 4:
+                this.valorEmPontos = 25;
+                break;
+            default:
+                this.valorEmPontos = 0;
         }
     }
 

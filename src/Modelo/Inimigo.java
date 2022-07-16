@@ -68,7 +68,7 @@ public class Inimigo extends Personagem  implements Serializable {
     public boolean movimentarParaBaixo() {
         this.iImage = this.iFrente;
         this.getPosicao().setDirecao(Consts.BAIXO);
-        int indiceLinha = this.getPosicao().getLinha()+1;
+        int indiceLinha = this.getPosicao().getLinha()+1; 
         if(indiceLinha >= Consts.RESOLUCAO) return false;
         return verificarProximoPasso(
                 MatrizObjetos.getMatrizDeObjetos()[indiceLinha][this.getPosicao().getColuna()],
@@ -106,15 +106,20 @@ public class Inimigo extends Personagem  implements Serializable {
                 ControleDeJogo.gameOver((Skooter)personagemDePossivelConflito);
             }
             return false;
-
         }
-        switch (direcao){
-            case Consts.CIMA -> {return super.movimentarParaCima();}
-            case Consts.DIREITA -> {return super.movimentarParaDireita();}
-            case Consts.BAIXO -> {return super.movimentarParaBaixo();}
-            case Consts.ESQUERDA -> {return super.movimentarParaEsquerda();}
-            default -> {return false;}
+        switch (direcao) {
+            case Consts.CIMA:
+                return super.movimentarParaCima();
+            case Consts.DIREITA:
+                return super.movimentarParaDireita();
+            case Consts.BAIXO:
+                return super.movimentarParaBaixo();
+            case Consts.ESQUERDA:
+                return super.movimentarParaEsquerda();
+            default:
+                break;
         }
+        return false;
     }
 }
 

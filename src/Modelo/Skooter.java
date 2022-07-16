@@ -155,13 +155,19 @@ public class Skooter extends Personagem implements Serializable{
 
 
 
-        switch (direcao){
-            case Consts.CIMA -> {return super.movimentarParaCima();}
-            case Consts.DIREITA -> {return super.movimentarParaDireita();}
-            case Consts.BAIXO -> {return super.movimentarParaBaixo();}
-            case Consts.ESQUERDA -> {return super.movimentarParaEsquerda();}
-            default -> {return false;}
+        switch (direcao) {
+            case Consts.CIMA:
+                return super.movimentarParaCima();
+            case Consts.DIREITA:
+                return super.movimentarParaDireita();
+            case Consts.BAIXO:
+                return super.movimentarParaBaixo();
+            case Consts.ESQUERDA:
+                return super.movimentarParaEsquerda();
+            default:
+                break;
         }
-    }
+        return false;
+    } 
 
 }
